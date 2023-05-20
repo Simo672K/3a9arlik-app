@@ -1,0 +1,241 @@
+@import "variables";
+:root {
+  --secondary-color: #ff9900;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.f-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5;
+}
+
+.border-custom {
+  border: solid 2px $primary-color;
+  &:hover {
+    border-width: 2px;
+    background-color: $primary-color;
+    border-color: transparent;
+    color: #fff;
+  }
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar {
+  transition: 400ms all ease;
+  &.shrink {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    .navbar-brand img {
+      width: 140px !important;
+    }
+
+    .nav-link.cta-btn {
+      padding: 0.3rem 1.2rem !important;
+    }
+  }
+
+  .nav-link {
+    color: $primary-color;
+    &.dropdown-toggle::after {
+      content: none;
+    }
+    &:hover,
+    &.active {
+      color: $secondary-color;
+      border-bottom: solid 2px $secondary-color;
+    }
+  }
+}
+
+.card{
+  &-result{
+    border-width: 2px; 
+    cursor: pointer;
+    transition: border 300ms ease;
+    &:hover{
+      border-color: var(--primary-color);
+    }
+  }
+}
+
+.section-text {
+  line-height: 2;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.curved{
+  &-img {
+    border-top-left-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    border-left: solid 15px $primary-color;
+    border-top: solid 15px $primary-color;
+  }
+  &-testimonial{
+    border: solid 2px $primary-color;
+    color: $primary-color;
+    border-radius: 0;
+    border-top-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    transition: background 400ms ease-in;
+    cursor: default;
+    &:hover{
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+.shadow-text-effect {
+  text-shadow: -3px -2px 0px $secondary-color, -4px -4px 0px $primary-color;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.bg {
+  &-header {
+    background: url(../images/header-bg.png) top right no-repeat,
+      linear-gradient(to bottom, $primary-color, $gradient-color);
+    height: 30rem;
+  }
+  &-primary {
+    background-color: $primary-color !important;
+  }
+  &-secondary {
+    background-color: $secondary-color !important;
+  }
+  &-placeholder{
+    border-radius: 2px;
+    min-width: 15rem;
+    background:linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/card-placeholder.png) center no-repeat;
+  }
+}
+
+.animate-text {
+  padding: 0 10px;
+  border-bottom: dotted 2px $secondary-color;
+}
+
+.text{
+  &-content {
+    display: none;
+    color: $secondary-color;
+    font-weight: 700;
+  }
+  &-small{
+    font-size: 0.9rem;
+  }
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+}
+
+span {
+  &.text-in {
+    display: inline-block;
+    animation: textIn 0.4s ease;
+  }
+  &.text-out {
+    animation: textOut 0.4s ease;
+  }
+}
+@keyframes textIn {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+@keyframes textOut {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.search-card {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form {
+  &-select {
+    border-width: 2px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $primary-color;
+    }
+    option:hover {
+      background-color: $secondary-color;
+    }
+  }
+  &-control{
+    border-radius: 3px;
+    border-width: 2px;
+    border-color: $primary-color;
+    
+    &:focus{
+      box-shadow: none;
+      border-color: $secondary-color;
+    }
+  }
+}
+
+.cta-btn {
+  font-weight: 700;
+  border-width: 3px;
+  background-color: $secondary-color;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  &:hover {
+    border-width: 3px !important;
+    border-color: $secondary-color;
+    color: $primary-color !important;
+  }
+}
+
+.fixed-bg {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(../images/fixed-img.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed;
+  height: 12rem;
+}
+
+
+.gradient-bg, .footer-bg{
+  background: linear-gradient(to bottom, $gradient-color, $primary-color);
+}
+
+.newsletter-bg{
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/newsletter-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
+  height: 25rem;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}

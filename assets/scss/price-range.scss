@@ -1,0 +1,53 @@
+@import "variables";
+
+.range{
+  &-slider {
+    height: 4px;
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+  }
+  &-selected {
+    height: 100%;
+    left: 30%;
+    right: 30%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: $secondary-color;
+  }
+  &-input {
+    position: relative;
+    input {
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      top: -5px;
+      background: none;
+      pointer-events: none;
+      appearance: none;
+      &::-webkit-slider-thumb {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 3px solid $secondary-color;
+        background-color: #fff;
+        pointer-events: auto;
+        -webkit-appearance: none;
+      }
+      &::-moz-range-thumb {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 3px solid #1b53c0;
+        background-color: #fff;
+        pointer-events: auto;
+        -moz-appearance: none;
+      }
+    }
+  }
+  &-price {
+    margin: 30px 0;
+    width: 100%;
+    display: none;
+  }
+}
