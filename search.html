@@ -64,8 +64,64 @@
   </nav>
 
   <main>
-    <div class="container py-5 my-5">
-      <h2 class="poppins fw-bold display-5 mb-5">Resultat de recherche:</h2>
+    <div class="container pb-5 my-5">
+      <div class="card w-100 bg-white p-4 shadow mb-5" style="border-radius: 15px; border: solid 2px #06334b;">
+        <form action="" class="d-flex">
+          <select class="form-select me-2" name="" id="">
+            <option value="">Toutes les villes</option>
+            <option value="">Appartements</option>
+            <option value="">Villas</option>
+            <option value="">Boutiques</option>
+            <option value="">Bureaux</option>
+            <option value="">Terrains</option>
+          </select>
+          <select class="form-select me-2" name="" id="">
+            <option value="">Tous les types d'immeubles</option>
+            <option value="">Appartements</option>
+            <option value="">Villas</option>
+            <option value="">Boutiques</option>
+            <option value="">Bureaux</option>
+            <option value="">Terrains</option>
+          </select>
+          <div class="dropdown">
+            <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+              <i class="fa-solid fa-filter"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end pt-3" style="width: 20rem;">
+              <li class="px-3">
+                <input type="checkbox" name="" id="enablePriceFilter">
+                <label class="ms-2" for="enablePriceFilter">Activer le filtrage par prix.</label>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="px-3 mb-2 text-muted" style="font-size: 0.9rem;">
+                Choisir un prix:
+              </li>
+              <li class="range mb-3 px-3">
+                <div class="range-slider">
+                  <span class="range-selected"></span>
+                </div>
+                <div class="range-input">
+                  <input type="range" class="min" min="0" max="1000" value="300" step="10">
+                  <input type="range" class="max" min="0" max="1000" value="700" step="10">
+                </div>
+                <div class="range-price">
+                  <input type="hidden" name="min" value="300">      
+                  <input type="hidden" name="max" value="700">      
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="px-3">
+                <p class="mb-0">Prix: <span id="min-prix">0</span>~<span id="max-prix">0</span> MAD</p>
+              </li>
+            </ul>
+          </div>
+          <button type="submit" class="btn cta-btn d-flex align-items-center">
+            <i class="fa-solid fa-magnifying-glass-location me-2"></i>
+            Rechercher
+          </button>
+        </form>
+      </div>
+      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Resultat de recherche:</h2>
       
       <div class="card flex-row p-1 mb-4 card-result">
         <div class="bg-placeholder overflow-hidden">
@@ -128,6 +184,13 @@
         </div>
       </div>
 
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+      </nav>
     </div>
   </main>
 
@@ -259,36 +322,6 @@
         }
       });
     });
-
-    const txts = document.querySelectorAll(".text-content"),
-      txtsLen = txts.length;
-    let index = 0;
-    const textInTimer = 3000,
-      textOutTimer = 2800;
-
-    function animateText() {
-      for (let i = 0; i < txtsLen; i++) {
-        txts[i].classList.remove("text-in", "text-out");
-      }
-      txts[index].classList.add("text-in");
-
-      setTimeout(function () {
-        txts[index].classList.add("text-out");
-      }, textOutTimer)
-
-      setTimeout(function () {
-
-        if (index == txtsLen - 1) {
-          index = 0;
-        }
-        else {
-          index++;
-        }
-        animateText();
-      }, textInTimer);
-    }
-
-    window.onload = animateText;
   </script>
 </body>
 

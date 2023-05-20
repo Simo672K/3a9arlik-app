@@ -239,3 +239,16 @@ span {
 .overflow-hidden{
   overflow: hidden;
 }
+
+.page{
+  &-item{
+    .page-link{
+      color: $primary-color;
+    }
+    &.active > .page-link{
+      color: #fff;
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
+}
