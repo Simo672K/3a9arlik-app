@@ -49,7 +49,6 @@
 
     .search-mapcard {
       border-radius: 15px;
-      border: 0;
       z-index: 401;
       width: 85%;
       top: 1rem;
@@ -139,65 +138,60 @@
     <main class="map-wrapper">
       <div class="map-innerwrapper">
         <div class="card position-absolute bg-white p-3 shadow search-mapcard">
-          <form action="" class="d-flex">
-            <select class="form-select me-2" name="" id="">
-              <option value="">Toutes les villes</option>
-              <option value="">Appartements</option>
-              <option value="">Villas</option>
-              <option value="">Boutiques</option>
-              <option value="">Bureaux</option>
-              <option value="">Terrains</option>
-            </select>
-            <select class="form-select me-2" name="" id="">
-              <option value="">Tous les types d'immeubles</option>
-              <option value="">Appartements</option>
-              <option value="">Villas</option>
-              <option value="">Boutiques</option>
-              <option value="">Bureaux</option>
-              <option value="">Terrains</option>
-            </select>
-            <div class="dropdown">
-              <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false" type="button">
-                <i class="fa-solid fa-filter"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end pt-3" style="width: 20rem;">
-                <li class="px-3">
-                  <input type="checkbox" name="" id="enablePriceFilter">
-                  <label class="ms-2" for="enablePriceFilter">Activer le filtrage par prix.</label>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li class="px-3 mb-2 text-muted" style="font-size: 0.9rem;">
-                  Choisir un prix:
-                </li>
-                <li class="range mb-3 px-3">
-                  <div class="range-slider">
-                    <span class="range-selected"></span>
-                  </div>
-                  <div class="range-input">
-                    <input type="range" class="min" min="0" max="1000" value="300" step="10">
-                    <input type="range" class="max" min="0" max="1000" value="700" step="10">
-                  </div>
-                  <div class="range-price">
-                    <input type="hidden" name="min" value="300">
-                    <input type="hidden" name="max" value="700">
-                  </div>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li class="px-3">
-                  <p class="mb-0">Prix: <span id="min-prix">0</span>~<span id="max-prix">0</span> MAD</p>
-                </li>
-              </ul>
-            </div>
-            <button type="submit" class="btn cta-btn d-flex align-items-center">
-              <i class="fa-solid fa-magnifying-glass-location me-2"></i>
-              Rechercher
+        <form action="search.php" metod="get" class="d-flex">
+          <select class="form-select me-2" name="ville" >
+            <option value="">Toutes les villes</option>
+            <option value="">Appartements</option>
+            <option value="">Villas</option>
+            <option value="">Boutiques</option>
+            <option value="">Bureaux</option>
+            <option value="">Terrains</option>
+          </select>
+          <select class="form-select me-2" name="type" >
+            <option value="">Tous les types d'immeubles</option>
+            <option value="">Appartements</option>
+            <option value="">Villas</option>
+            <option value="">Boutiques</option>
+            <option value="">Bureaux</option>
+            <option value="">Terrains</option>
+          </select>
+          <div class="dropdown">
+            <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
+              <i class="fa-solid fa-filter"></i>
             </button>
-          </form>
+            <ul class="dropdown-menu dropdown-menu-end pt-3" style="width: 20rem;">
+              <li class="px-3">
+                <input type="checkbox" name="" id="enablePriceFilter">
+                <label class="ms-2" for="enablePriceFilter">Activer le filtrage par prix.</label>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="px-3 mb-2 text-muted" style="font-size: 0.9rem;">
+                Choisir un prix:
+              </li>
+              <li class="range mb-3 px-3">
+                <div class="range-slider">
+                  <span class="range-selected"></span>
+                </div>
+                <div class="range-input">
+                  <input type="range" class="min" min="0" max="1000" value="0" step="10">
+                  <input type="range" class="max" min="0" max="1000" value="1000" step="10">
+                </div>
+                <div class="range-price">
+                  <input type="hidden" name="min-prix" value="0">      
+                  <input type="hidden" name="max-prix" value="1000">      
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="px-3">
+                <p class="mb-0">Prix: <span id="min-prix">0</span>~<span id="max-prix">0</span> MAD</p>
+              </li>
+            </ul>
+          </div>
+          <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
+            <i class="fa-solid fa-magnifying-glass-location me-2"></i>
+            Rechercher
+          </button>
+        </form>
         </div>
 
         <div class="" id="map"></div>

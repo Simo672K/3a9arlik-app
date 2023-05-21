@@ -77,8 +77,8 @@
         Seulment en quelques Clics!
       </h1>
       <div class="card w-100 position-absolute bg-white p-4 search-card shadow" style="border-radius: 15px; border: 0;">
-        <form action="" class="d-flex">
-          <select class="form-select me-2" name="" id="">
+        <form action="search.php" metod="get" class="d-flex">
+          <select class="form-select me-2" name="ville" >
             <option value="">Toutes les villes</option>
             <option value="">Appartements</option>
             <option value="">Villas</option>
@@ -86,7 +86,7 @@
             <option value="">Bureaux</option>
             <option value="">Terrains</option>
           </select>
-          <select class="form-select me-2" name="" id="">
+          <select class="form-select me-2" name="type" >
             <option value="">Tous les types d'immeubles</option>
             <option value="">Appartements</option>
             <option value="">Villas</option>
@@ -112,12 +112,12 @@
                   <span class="range-selected"></span>
                 </div>
                 <div class="range-input">
-                  <input type="range" class="min" min="0" max="1000" value="300" step="10">
-                  <input type="range" class="max" min="0" max="1000" value="700" step="10">
+                  <input type="range" class="min" min="0" max="1000" value="0" step="10">
+                  <input type="range" class="max" min="0" max="1000" value="1000" step="10">
                 </div>
                 <div class="range-price">
-                  <input type="hidden" name="min" value="300">      
-                  <input type="hidden" name="max" value="700">      
+                  <input type="hidden" name="min-prix" value="0">      
+                  <input type="hidden" name="max-prix" value="1000">      
                 </div>
               </li>
               <li><hr class="dropdown-divider"></li>
@@ -126,7 +126,7 @@
               </li>
             </ul>
           </div>
-          <button type="submit" class="btn cta-btn d-flex align-items-center">
+          <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
             <i class="fa-solid fa-magnifying-glass-location me-2"></i>
             Rechercher
           </button>
@@ -292,11 +292,11 @@
               <form action="">
                 <label class="form-label text-muted" for="newsletter-email">Entrer votre addresse email:</label>
                 <div class="mb-2">
-                  <input id="newsletter-email" class="form-control mb-2" type="email" placeholder="exemple@email.com">
+                  <input id="newsletter-email" class="form-control mb-2" type="email" name="newsletter-email" placeholder="exemple@email.com">
                   <button class="btn cta-btn w-100">S'inscrire</button>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <input type="checkbox" name="" id="notify-all">
+                  <input type="checkbox" name="notifitier-tous" id="notify-all">
                   <label for="notify-all" class="ms-2 text-muted" style="font-size: 0.8rem;">Notifier moi aussi de tous les autres produits.</label>
                 </div>
               </form>
@@ -336,8 +336,8 @@
         <div class="col-md-4">
           <h3 class="poppins fw-bold">Contacter Nous</h3>
           <form action="">
-            <input type="email" class="form-control mb-2" placeholder="Votre email...">
-            <textarea name="" id="" class="form-control mb-2" rows="4" placeholder="Votre message..."></textarea>
+            <input type="email" name="contact-email" class="form-control mb-2" placeholder="Votre email...">
+            <textarea name="contact-message" class="form-control mb-2" rows="4" placeholder="Votre message..."></textarea>
             <button class="btn bg-secondary fw-bold px-5 py-2">Envoyer</button>
           </form>
         </div>
