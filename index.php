@@ -1,3 +1,8 @@
+<?php 
+  require_once("includes/classes.php");
+  session_start();
+  
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,13 +56,21 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">S'inscrire</a>
+          <?php if(!$_SESSION["user_logged"]){ ?>
+          <li class="nav-item ms-auto me-2">
+            <a class="nav-link" href="login.php">Se Connecter</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link btn cta-btn" href="register.php">S'inscrire</a>
+          </li>
+          <?php }else{?>
+          <li class="nav-item ms">
+            <a class="nav-link" href="logout.php">Déconnecter (<?php echo $_SESSION["user_name"];?>)</a>
+          </li>
           <li class="nav-item ms-auto">
             <a class="nav-link btn cta-btn" href="#"><i data-feather="plus-circle"></i> Ajouter un post</a>
           </li>
+          <?php }?>
         </ul>
       </div>
     </div>
@@ -79,20 +92,16 @@
       <div class="card w-100 position-absolute bg-white p-4 search-card shadow" style="border-radius: 15px; border: 0;">
         <form action="search.php" metod="get" class="d-flex">
           <select class="form-select me-2" name="ville" >
-            <option value="">Toutes les villes</option>
-            <option value="">Appartements</option>
-            <option value="">Villas</option>
-            <option value="">Boutiques</option>
-            <option value="">Bureaux</option>
-            <option value="">Terrains</option>
+            <option value="all">Toutes les villes</option>
+            <?php foreach(City::$cities as $city){
+              echo "<option value='{$city['city_id']}'>{$city['city_name']}</option>";
+            }?>            
           </select>
           <select class="form-select me-2" name="type" >
-            <option value="">Tous les types d'immeubles</option>
-            <option value="">Appartements</option>
-            <option value="">Villas</option>
-            <option value="">Boutiques</option>
-            <option value="">Bureaux</option>
-            <option value="">Terrains</option>
+            <option value="all">Tous les types d'immeubles</option>
+            <?php foreach(Category::$categories as $category){
+              echo "<option value='{$category['category_id']}'>{$category['category_name']}</option>";
+            }?>            
           </select>
           <div class="dropdown">
             <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">

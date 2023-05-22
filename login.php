@@ -1,6 +1,23 @@
+<?php
+  require_once("includes/classes.php");
+  session_start();
+  
+  if(isset($_POST["submit"])){
+    $email= $_POST["user_email"];
+    $password= $_POST["user_password"];
+    User::auth_user($email, $password);
+    if(User::$logged_in){
+      $_SESSION["user_name"]= User::$name;
+      $_SESSION["user_email"]= User::$email;
+      $_SESSION["user_phone"]= User::$phone;
+      $_SESSION["user_logged"]= User::$logged_in;
+
+      header("Location: index.php");
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,17 +67,17 @@
           <div class="col-6 register-bg"></div>
           <div class="col-6 px-4 py-2">
             <h3 class="poppins mb-4 mt-3 display-6 fw-bold">Connecter à votre compte</h3>
-            <form action="" class="d-flex flex-column">
+            <form action="login.php" method="POST" class="d-flex flex-column">
               <div class="mb-3">
                 <label class="form-label text-muted" for="email"><span class="text-danger me-1">*</span>Email:</label>
-                <input type="text" class="form-control" id="email" placeholder="Votre Email..." required>
+                <input type="text" class="form-control" name="user_email" id="email" placeholder="Votre Email..." required>
               </div>
               <div class="mb-3">
                 <label class="form-label text-muted" for="prenom"><span class="text-danger me-1">*</span>Mot de passe:</label>
-                <input type="password" class="form-control" id="prenom" placeholder="Votre Mot de Passe..." required>
+                <input type="password" class="form-control" name="user_password" id="prenom" placeholder="Votre Mot de Passe..." required>
               </div>
   
-              <button class="btn cta-btn">Se Connecter</button>
+              <button class="btn cta-btn" type="submit" name="submit">Se Connecter</button>
             </form>
             <p class="text-center text-muted mt-2 mb-0">Vous n'avez pas de compte? <a href="" style="color: var(--secondary-color);">Créez un maintenant.</a></p>
             <hr class="mt-2">
