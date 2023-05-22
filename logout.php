@@ -4,5 +4,5 @@
     unset($_SESSION[$key]);
   };
   $_SESSION["user_logged"]= false;
-  print_r($_SESSION);
-  header("refresh:5;url=index.php");
+  echo "Redirect, attendez ";
+  header("refresh:2;url=index.php");

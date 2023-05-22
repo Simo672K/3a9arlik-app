@@ -1,5 +1,5 @@
 <?php
-  require_once("includes/classes.php");
+  require_once("core/classes.php");
   session_start();
   
   if(isset($_POST["submit"])){
