@@ -66,7 +66,9 @@ class Post{
     ");
     $query->execute($values);
   }
-  public static function get_post(){}
+  public static function get_post($id){
+    Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE . " WHERE post_id=$id");
+  }
   public static function update_post(){}
   public static function delete_post(){}
 }

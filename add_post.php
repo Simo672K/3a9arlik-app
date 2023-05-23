@@ -1,10 +1,10 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
-  new User();
   
   if(isset($_POST["submit"]) && $_SESSION["user_logged"]){
     $file_count = count($_FILES["post_images"]["name"]);
+    $images= array();
     for($i=0; $i<$file_count; $i++) {
       $file_name = $_FILES['post_images']['name'][$i];
       $file_type = $_FILES['post_images']['type'][$i];
@@ -17,7 +17,7 @@
         $unique_file_name = generate_filename($file_name);
         // // Move the uploaded file to the target directory
         if (move_uploaded_file($file_tmp_name, UPLOAD_DIR . $unique_file_name)) {
-            echo 'File uploaded successfully: ' . $file_name . '<br>';
+            array_push($images, $unique_file_name);
         } else {
             echo 'Failed to move uploaded file: ' . $file_name . '<br>';
         }
@@ -33,11 +33,13 @@
       "post_addresse"=>$_POST["post_addresse"],
       "post_coordinates"=>$_POST["post_coordinates"],
       "post_price"=>$_POST["post_price"],
+      "post_images"=>json_encode($images),
       "post_city_id"=>$_POST["post_city_id"],
       "post_category_id"=>$_POST["post_category_id"],
       "post_type"=>$_POST["post_type"],
     ];
-    // print_r($values);
+
+    Post::create_post($values);
   }
 ?>
 

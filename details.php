@@ -1,3 +1,13 @@
+<?php
+  require_once("core/init_session.php");
+  require_once("core/classes.php");
+
+  if(isset($_GET["post_id"])){
+    Post::get_post($_GET["post_id"]);
+  }
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,36 +107,40 @@
 </head>
 
 <body>
+  <?php $row= Post::$result->fetch(PDO::FETCH_ASSOC);?>
   <section class="details-container">
     <aside class="content-container d-flex flex-column shadow-lg" style="z-index: 401;">
       <div class="px-3 shadow-sm py-1">
-        <img src="assets/images/logo.png" style="width:160px" alt="3a9arLik logo">
+        <a href="index.php">
+          <img src="assets/images/logo.png" style="width:160px" alt="3a9arLik logo">
+        </a>
       </div>
       <div class="pt-4 px-3 d-flex flex-column h-100">
-        <h2 class="poppins display-6 mb-0 fw-bold">Home for sell</h2>
+        <h2 class="poppins fs-2 mb-0 fw-bold"><?php echo $row["post_title"]?></h2>
         <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-          <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-          <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-          <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
+          <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $row["post_price"]?> DH</span>
+          <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i><?php echo $row["post_views"]?></span>
+          <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i><?php echo $row["post_added"]?></span>
         </p>
-        <div class="description-preview mb-auto d-flex flex-column">
-          <p class="mb-0" style="text-align: justify;">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi dicta aspernatur laudantium mollitia ex blanditiis consectetur
-            eligendi laborum reiciendis deleniti. Neque nostrum eum, ab, libero ex quidem alias accusantium eius cum, culpa enim iure...
+        <div class="description-preview mb-auto d-flex flex-column" style="height: 25%;">
+          <p class="mb-0" style="text-align: justify; max-height: 100%; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5;">
+            <?php echo $row["post_description"]?>
           </p>
-          <div class="description-overlay"></div>
-          <button class="btn more fw-bold mx-auto mt-1" 
+          <div class="description-overlay h-100"></div>
+          <button class="btn more fw-bold mx-auto mt-1 position-absolute" 
             data-bs-toggle="modal" data-bs-target="#moreContentModal"
-            style="color: var(--primary-color); font-size: 0.9rem; text-decoration: underline;">Lire la suite</button>
+            style="color: var(--primary-color); font-size: 0.9rem; text-decoration: underline; bottom: 0;left: 50%;transform: translate(-50%);">
+            Lire la suite
+          </button>
         </div>
 
         <!-- gallery slider -->
         <div class="swiper mb-3" style="width: 450px; border-radius: 15px;">
           <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide"><img src="assets/images/swiper-1.jpg" alt="test-img-1"></div>
-            <div class="swiper-slide"><img src="assets/images/swiper-2.jpg" alt="test-img-1"></div>
-            <div class="swiper-slide"><img src="assets/images/swiper-3.jpg" alt="test-img-1"></div>
+            <?php foreach(json_decode($row["post_images"]) as $image){?>
+              <div class="swiper-slide"><img src="<?php echo UPLOAD_DIR . $image?>" alt="<?php echo $image;?>"/></div>
+            <?php }?>
           </div>
         
           <!-- If we need navigation buttons -->
@@ -194,7 +208,7 @@
         </form>
         </div>
 
-        <div class="" id="map"></div>
+        <div data-addresse="<?php echo $row["post_addresse"]?>" id="map" data-map="<?php echo $row["post_coordinates"]?>"></div>
       </div>
 
     </main>
@@ -203,41 +217,33 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 45rem">
       <div class="modal-content shadow" style="border-radius: 15px; border: 0;"> 
         <div class="modal-header border-0 align-items-start shadow-sm">
-          <h3 class="poppins display-5 mb-0 fw-bold">House for sell</h3>
+          <h3 class="poppins display-5 mb-0 fw-bold"><?php echo $row["post_title"]?></h3>
           <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-3 d-flex flex-column h-100">
           <p class="text-indent">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis minima architecto nisi amet esse quod doloremque maxime non repellat reprehenderit, dolorum eveniet! Nam eaque praesentium cum! In autem quia aliquid libero assumenda cumque voluptas nobis soluta, totam fugiat ipsam dolore facilis, corporis ducimus neque deleniti incidunt quasi! 
-          </p>
-          <p>
-            A obcaecati voluptatibus corrupti perferendis officia rerum, veritatis debitis dolor necessitatibus sit omnis ipsam! Doloremque saepe accusamus asperiores earum provident, nemo harum animi iusto ipsa quo iure itaque delectus minima. Cupiditate, est reprehenderit voluptatem corrupti iste veniam necessitatibus aliquam architecto. Repellat, praesentium eaque dolor rerum rem ut vitae alias delectus. 
-          </p>
-          <p>Accusantium repellat dolore quaerat ut, obcaecati consequatur libero necessitatibus voluptatibus reprehenderit, deserunt quas expedita minus error, ipsum ullam tempore eaque perferendis id! Error veniam sequi quidem est quis illo quam repudiandae asperiores, temporibus pariatur, tempore nostrum ex neque officiis sed eos. Repudiandae porro, distinctio maxime quibusdam quam cum hic expedita illo, quidem molestias, ratione tenetur inventore necessitatibus quaerat nemo cumque? Adipisci rem vitae accusamus! Voluptatem eos placeat corrupti ipsa itaque, nobis eius suscipit non explicabo in necessitatibus delectus voluptatum quos sunt, deserunt officiis labore. 
-          </p>
-          <p>
-            Est laborum magni alias repellendus id a aut blanditiis tempora recusandae neque natus voluptatum, nostrum, libero omnis! Vitae fugit itaque reprehenderit minus modi consequuntur libero hic quas, commodi ex officiis nostrum, accusantium facere ullam quod a alias ab ad, soluta non repudiandae dolorum earum dolores. Esse mollitia consequuntur magni minus obcaecati quis eius fugiat praesentium sunt nulla, corporis aut, sint eum odit beatae eos repellat expedita dolorum corrupti quod voluptate! Cumque delectus quaerat aperiam doloribus commodi minus nisi culpa tenetur dolore vero facilis esse iusto, neque velit nihil alias quasi. Perferendis itaque veniam est tempora ducimus voluptatem praesentium dolores officia? Expedita placeat repellat necessitatibus, dignissimos quisquam, nostrum eum laborum eligendi ex illum dolorum fuga unde amet deserunt doloribus beatae?
+            <?php echo $row["post_description"]?>
           </p>
         </div>
       </div>
     </div>
   </div>
-
   <script src="vendors/js/bootstrap.bundle.min.js"></script>
   <script src="vendors/js/leaflet.js"></script>
   <script src="vendors/js/feather.min.js"></script>
   <script src="vendors/js/swiper-bundle.min.js"></script>
   <script>
     feather.replace();
-
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var mapContainer= document.getElementById("map");
+    var map = L.map('map').setView(JSON.parse(mapContainer.getAttribute("data-map")), 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var marker = L.marker([51.5, -0.09]).addTo(map);
+    var marker = L.marker(JSON.parse(mapContainer.getAttribute("data-map"))).addTo(map);
+    marker.bindPopup(mapContainer.getAttribute("data-addresse")).openPopup();
     const swiper = new Swiper('.swiper', {
       loop: true,
       autoplay: {
