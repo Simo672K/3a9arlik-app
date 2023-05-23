@@ -1,6 +1,12 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
+
+  
+  if(isset($_POST["submit"])){
+    print_r($_POST);
+  }
+    
 ?>
 
 <!DOCTYPE html>
@@ -51,14 +57,14 @@
       </nav>
       <h2 class="text-center display-4 fw-bold mb-5">Ajouter un nouveau post.</h2>
       <form action="" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="post_user_id" value="<?php echo User::$id?>" required>
+        <input type="hidden" name="post_user_id" value="<?php echo $_SESSION["user_id"]?>" required>
 
         <label class="form-label" for="post-titre">Titre du post :</label>
-        <input class="form-control mb-3" type="text" id="post-titre" name="post_titre" placeholder="Titre d'annonce" required>
+        <input class="form-control mb-3" type="text" id="post-titre" name="post_title" placeholder="Titre d'annonce" required>
 
         <label class="form-label" for="post-addresse">Addresse <strong class="text-small text-primary poppins">(*Vous devez tappez l'addresse puis définir la localisation en clicant sur selectionner localisation)</strong> :</label>
         <div class="input-group align-items-center mb-3">
-          <input class="form-control" type="text" name="post_user_id" id="post-addresse" placeholder="Addresse du local" required>
+          <input class="form-control" type="text" name="post_addresse" id="post-addresse" placeholder="Addresse du local" required>
           <input type="hidden" name="post_coordinates" id="post-coordinates" required>
           <button class="btn cta-btn border-2" type="button" data-bs-toggle="modal" data-bs-target="#locationModal">Selectionner localisation</button>
         </div>
@@ -108,7 +114,7 @@
         
         <div class="mt-4">
           <button class="btn btn-danger" type="reset" style="padding:0.6rem 6rem !important; border-width: 3px;">Annuler</button>
-          <button class="btn cta-btn" type="submit" style="padding:0.6rem 6rem !important;">Publier</button>
+          <button class="btn cta-btn" type="submit" name="submit" style="padding:0.6rem 6rem !important;">Publier</button>
         </div>
       </form>
     </div>
@@ -137,8 +143,10 @@
   <!-- Footer -->
   <?php include("includes/footer.php")?>
   <script src="vendors/js/bootstrap.bundle.min.js"></script>
+  <script src="vendors/js/feather.min.js"></script>
   <script src="vendors/js/leaflet.js"></script>
   <script>
+    feather.replace()
     // navbar shrink on scroll
     let navBar = document.querySelector(".navbar");
     if (window.scrollY > 150) {

@@ -1,22 +1,23 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
-  
+  $user_created= true;
+
   if(isset($_POST["submit"])){
-    $name= $_POST["user_email"];
+    $name= $_POST["user_name"];
     $email= $_POST["user_email"];
     $phone= $_POST["user_phone"];
     $password= $_POST["user_password"];
 
-    User::auth_user($email, $password);
-    if(User::$logged_in){
-      $_SESSION["user_name"]= User::$name;
-      $_SESSION["user_email"]= User::$email;
-      $_SESSION["user_phone"]= User::$phone;
-      $_SESSION["user_logged"]= User::$logged_in;
-
-      header("Location: index.php");
+    try {
+      User::add_user($name, $email, $phone, $password);
+      $user_created= true;
+    }catch (Exception $e){
+      echo $e;
     }
+    
+    // header("Location: index.php");
+    
   }
 ?>
 <!DOCTYPE html>
@@ -64,7 +65,9 @@
 </head>
 <body>
   <div class="container">
-
+    <div class="alert alert-success position-absolute top-2" style="z-index: 50">
+      Votre compte a été creer avec succée!
+    </div>
     <div class="card shadow" style="overflow: hidden;">
       <div class="card-body p-0" style="overflow: hidden;">
         <div class="row p-0">

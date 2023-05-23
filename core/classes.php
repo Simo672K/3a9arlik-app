@@ -30,10 +30,19 @@ class User{
   }
 
   public static function add_user($name, $email, $phone, $password){
-    $user_query= "INSERT INTO ". USER_TABLE. "(`user_name`, `user_email`, `user_phone`, `user_password`) VALUES ($name, $email, $phone,".password_hash($password, PASSWORD_DEFAULT).");";
-    $query_result= DBhandler::get_result($user_query);
+    $hashed_password= password_hash($password, PASSWORD_DEFAULT);
+    $values= [
+      "name"=> $name, 
+      "email"=> $email, 
+      "phone"=> $phone,
+      "password"=> $hashed_password
+    ];
 
-    if($query_result) 
+    $user_query= "INSERT INTO ". USER_TABLE. "(`user_name`, `user_email`, `user_phone`, `user_password`) VALUES (:name, :email, :phone, :password)";
+    $query= DBhandler::$conn->prepare($user_query);
+    $query->execute($values);
+
+    if($query) 
       return;
     
     throw new Exception("Failed to create user");

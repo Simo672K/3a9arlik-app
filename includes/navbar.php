@@ -54,7 +54,7 @@
             <a class="nav-link" href="logout.php">Déconnecter (<?php echo $_SESSION["user_name"];?>)</a>
           </li>
           <li class="nav-item ms-auto">
-            <a class="nav-link btn cta-btn" href="#"><i data-feather="plus-circle"></i> Ajouter un post</a>
+            <a class="nav-link btn cta-btn" href="add_post.php"><i data-feather="plus-circle"></i> Ajouter un post</a>
           </li>
           <?php }?>
         </ul>
