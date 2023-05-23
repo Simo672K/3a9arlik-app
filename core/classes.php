@@ -2,9 +2,9 @@
 require_once("constants.php");
 require_once("db.php");
 
-function generate_filename($prefix="", $ext=""){
+function generate_filename($file_name){
   $permitted_chars = '-_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  return $prefix.substr(str_shuffle($permitted_chars), 0, 64). $ext;
+  return substr(str_shuffle($permitted_chars), 0, 64). $file_name;
 }
 class User{
   static $id;
@@ -47,6 +47,28 @@ class User{
     
     throw new Exception("Failed to create user");
   }
+}
+
+class Post{
+  static $result;
+
+  public static function get_all_posts($limiter=null){
+    $query_result= DBhandler::get_result("SELECT * FROM " . POST_TABLE);
+    Post::$result= $query_result->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public static function create_post($values){
+    $query= DBhandler::$conn->prepare("INSERT INTO ". POST_TABLE .
+    " (`post_user_id`, `post_title`, `post_description`, `post_addresse`, 
+      `post_coordinates`, `post_price`, `post_images`, 
+      `post_city_id`, `post_category_id`, `post_type`) VALUES 
+      (:user_id, :post_title, :post_description, :post_addresse, :post_coordinates, :post_price, :post_images, :post_city_id, :post_category_id, :post_type)
+    ");
+    $query->execute($values);
+  }
+  public static function get_post(){}
+  public static function update_post(){}
+  public static function delete_post(){}
 }
 
 class City{

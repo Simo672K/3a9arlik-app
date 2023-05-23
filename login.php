@@ -7,6 +7,7 @@
     $password= $_POST["user_password"];
     User::auth_user($email, $password);
     if(User::$logged_in){
+      $_SESSION["user_id"]= User::$id;
       $_SESSION["user_name"]= User::$name;
       $_SESSION["user_email"]= User::$email;
       $_SESSION["user_phone"]= User::$phone;

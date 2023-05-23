@@ -1,12 +1,44 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
-
+  new User();
   
-  if(isset($_POST["submit"])){
-    print_r($_POST);
+  if(isset($_POST["submit"]) && $_SESSION["user_logged"]){
+    $file_count = count($_FILES["post_images"]["name"]);
+    for($i=0; $i<$file_count; $i++) {
+      $file_name = $_FILES['post_images']['name'][$i];
+      $file_type = $_FILES['post_images']['type'][$i];
+      $file_tmp_name = $_FILES['post_images']['tmp_name'][$i];
+      $file_error = $_FILES['post_images']['error'][$i];
+      
+      // Validate the file (add your own validation rules)
+      if ($file_error === UPLOAD_ERR_OK) {
+        // Generate a unique filename
+        $unique_file_name = generate_filename($file_name);
+        // // Move the uploaded file to the target directory
+        if (move_uploaded_file($file_tmp_name, UPLOAD_DIR . $unique_file_name)) {
+            echo 'File uploaded successfully: ' . $file_name . '<br>';
+        } else {
+            echo 'Failed to move uploaded file: ' . $file_name . '<br>';
+        }
+      } else {
+        echo 'Error uploading file: ' . $file_name . '. Error code: ' . $file_error . '<br>';
+      }
+    }
+
+    $values= [
+      "user_id"=>$_POST["post_user_id"],
+      "post_title"=>$_POST["post_title"],
+      "post_description"=>$_POST["post_description"],
+      "post_addresse"=>$_POST["post_addresse"],
+      "post_coordinates"=>$_POST["post_coordinates"],
+      "post_price"=>$_POST["post_price"],
+      "post_city_id"=>$_POST["post_city_id"],
+      "post_category_id"=>$_POST["post_category_id"],
+      "post_type"=>$_POST["post_type"],
+    ];
+    // print_r($values);
   }
-    
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +140,7 @@
           
           <div>
             <label class="form-label" for="post-images">Images du post:</label>
-            <input class="form-control" type="file" id="post-images" name="post_image" accept="image/*" style="width:fit-content" multiple>
+            <input class="form-control" type="file" id="post-images" name="post_images[]" accept="image/*" style="width:fit-content" multiple>
           </div>
         </div>
         
