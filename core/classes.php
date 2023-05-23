@@ -2,7 +2,12 @@
 require_once("constants.php");
 require_once("db.php");
 
+function generate_filename($prefix="", $ext=""){
+  $permitted_chars = '-_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return $prefix.substr(str_shuffle($permitted_chars), 0, 64). $ext;
+}
 class User{
+  static $id;
   static $name;
   static $email;
   static $phone;
@@ -12,6 +17,7 @@ class User{
   public static function auth_user($email, $password){
     $query_result= DBhandler::get_result("SELECT * FROM ". USER_TABLE . " WHERE user_email=\"$email\"");
     while($row= $query_result->fetch(PDO::FETCH_ASSOC)){
+      User::$id= $row["user_id"];
       User::$name= $row["user_name"];
       User::$email= $row["user_email"];
       User::$phone= $row["user_phone"];
