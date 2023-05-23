@@ -1,6 +1,6 @@
 <?php
   require_once("core/init_session.php");
-  // require_once("core/classes.php");
+  require_once("core/classes.php");
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,7 @@
       </nav>
       <h2 class="text-center display-4 fw-bold mb-5">Ajouter un nouveau post.</h2>
       <form action="" enctype="multipart/form-data">
-        <input type="hidden" name="post_user_id" value="<?php echo /*User::$id*/ "test"?>" required>
+        <input type="hidden" name="post_user_id" value="<?php echo User::$id?>" required>
 
         <label class="form-label" for="post-titre">Titre du post :</label>
         <input class="form-control mb-3" type="text" id="post-titre" name="post_titre" placeholder="Titre d'annonce" required>
@@ -75,18 +75,18 @@
           <div class="mx-auto">
             <label class="form-label" for="post-city">Ville :</label>
             <select class="form-select" id="post-city" name="post_city_id" required>
-              <?php /*foreach(City::$cities as $city){
+              <?php foreach(City::$cities as $city){
                 echo "<option value='{$city['city_id']}'>{$city['city_name']}</option>";
-              }*/?>            
+              }?>            
             </select>
           </div>
           
           <div class="mx-auto">
             <label class="form-label" for="post-category">Categorie :</label>
             <select class="form-select" id="post-category" name="post_category_id" required>
-              <?php /*foreach(Category::$categories as $category){
+              <?php foreach(Category::$categories as $category){
                 echo "<option value='{$category['category_id']}'>{$category['category_name']}</option>";
-              }*/?>            
+              }?>            
             </select>
           </div>
           <div class="mx-auto">

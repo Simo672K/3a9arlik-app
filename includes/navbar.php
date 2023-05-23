@@ -1,3 +1,24 @@
+<style>
+  .navbar .dropdown-menu{
+    overflow: hidden;
+    width: 15rem;
+    border-radius: 3px !important;
+    border: 0;
+    padding: 0;
+    padding-top: 1rem;
+    box-shadow: 0 2rem 15px rgba(0,0,0,0.4)!important;
+  }
+  .navbar .dropdown-menu .dropdown-item{
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-left: solid 5px var(--secondary-color);
+  }
+  .nav-link.hover-toggle:hover ~ .dropdown-menu, .dropdown-menu:hover{
+    display: block;
+    transition: all 300ms ease-in !important;
+  }
+</style>
+
 <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -15,17 +36,13 @@
           <li class="nav-item">
             <a class="nav-link" href="#">A propos</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Type d'immobilier <i data-feather="chevron-down"></i>
+          <li class="nav-item dropend">
+            <a class="nav-link hover-toggle dropdown-toggle" href="posts.php">
+              Annonces <i data-feather="chevron-down"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="posts.php?post_type=louer">Louer</a></li>
+              <li><a class="dropdown-item" href="posts.php?post_type=Acheter">Acheter</a></li>
             </ul>
           </li>
           <?php if(!$_SESSION["user_logged"]){ ?>
