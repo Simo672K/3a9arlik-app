@@ -43,8 +43,8 @@
       <nav class="card bg-gray mb-4 border-0" aria-label="breadcrumb">
         <div class="card-body pb-0">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Acceil</a></li>
-            <li class="breadcrumb-item"><a href="#">Posts</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Acceil</a></li>
+            <li class="breadcrumb-item"><a href="posts.php">Posts</a></li>
             <li class="breadcrumb-item active" aria-current="page">Nouveau post</li>
           </ol>
         </div>

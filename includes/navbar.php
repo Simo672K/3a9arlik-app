@@ -6,7 +6,7 @@
     border: 0;
     padding: 0;
     padding-top: 1rem;
-    box-shadow: 0 2rem 15px rgba(0,0,0,0.4)!important;
+    box-shadow:0 1rem 15px rgba(0,0,0,0.2);
   }
   .navbar .dropdown-menu .dropdown-item{
     padding-top: 0.4rem;
@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
         <img src="assets/images/logo.png" alt="3a9arLik logo image" style="width: 180px;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,9 +32,6 @@
         <ul class="navbar-nav mb-2 mb-lg-0 w-100 align-items-center">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">A propos</a>
           </li>
           <li class="nav-item dropend">
             <a class="nav-link hover-toggle dropdown-toggle" href="posts.php">
