@@ -30,7 +30,9 @@
 
   <main>
     <div class="container pb-5 my-5">
-      <div class="card w-100 bg-white p-4 shadow mb-5" style="border-radius: 15px; border: solid 2px #06334b;">
+      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Toutes les annonces</h2>
+      <h4><i data-feather="filter"></i> Filtrer par :</h4>
+      <div class="w-100 bg-white mb-5">
         <form action="search.php" metod="get" class="d-flex">
           <select class="form-select me-2" name="ville" >
             <option value="all">Toutes les villes</option>
@@ -51,8 +53,7 @@
             <label for="a-acheter">Acheter</label>
           </div>
           <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
-            <i class="fa-solid fa-magnifying-glass-location me-2"></i>
-            Rechercher
+            Filterer
           </button>
           <!-- <div class="dropdown">
             <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
@@ -88,8 +89,7 @@
           </div> -->
         </form>
       </div>
-      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Resultat de recherche:</h2>
-      
+      <div class="py-5"></div>
       <div class="card flex-row p-1 mb-4 card-result">
         <div class="bg-placeholder overflow-hidden">
           <img

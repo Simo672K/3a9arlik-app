@@ -50,7 +50,7 @@
         </div>
       </nav>
       <h2 class="text-center display-4 fw-bold mb-5">Ajouter un nouveau post.</h2>
-      <form action="" enctype="multipart/form-data">
+      <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="post_user_id" value="<?php echo User::$id?>" required>
 
         <label class="form-label" for="post-titre">Titre du post :</label>

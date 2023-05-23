@@ -1,6 +1,6 @@
 <?php
+  require_once("core/init_session.php");
   require_once("core/classes.php");
-  session_start();
   
   if(isset($_POST["submit"])){
     $email= $_POST["user_email"];
@@ -82,7 +82,7 @@
             <p class="text-center text-muted mt-2 mb-0">Vous n'avez pas de compte? <a href="" style="color: var(--secondary-color);">Créez un maintenant.</a></p>
             <hr class="mt-2">
             <div class="d-flex justify-content-center">
-              <a href="#">
+              <a href="index.php">
                 <img src="assets/images/logo.png" alt="logo 3a9arlik" style="width: 150px">
               </a>
             </div>

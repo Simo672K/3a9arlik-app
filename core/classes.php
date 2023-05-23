@@ -24,9 +24,19 @@ class User{
       User::$password= $row["user_password"];
     }
 
-    if(User::$password === $password && User::$email === $email){
+    if(password_verify($password, User::$password) && User::$email === $email){
       User::$logged_in= true;
     }
+  }
+
+  public static function add_user($name, $email, $phone, $password){
+    $user_query= "INSERT INTO ". USER_TABLE. "(`user_name`, `user_email`, `user_phone`, `user_password`) VALUES ($name, $email, $phone,".password_hash($password, PASSWORD_DEFAULT).");";
+    $query_result= DBhandler::get_result($user_query);
+
+    if($query_result) 
+      return;
+    
+    throw new Exception("Failed to create user");
   }
 }
 

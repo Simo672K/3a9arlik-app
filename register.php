@@ -1,3 +1,24 @@
+<?php
+  require_once("core/init_session.php");
+  require_once("core/classes.php");
+  
+  if(isset($_POST["submit"])){
+    $name= $_POST["user_email"];
+    $email= $_POST["user_email"];
+    $phone= $_POST["user_phone"];
+    $password= $_POST["user_password"];
+
+    User::auth_user($email, $password);
+    if(User::$logged_in){
+      $_SESSION["user_name"]= User::$name;
+      $_SESSION["user_email"]= User::$email;
+      $_SESSION["user_phone"]= User::$phone;
+      $_SESSION["user_logged"]= User::$logged_in;
+
+      header("Location: index.php");
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,33 +71,33 @@
           <div class="col-6 register-bg"></div>
           <div class="col-6 px-4 py-2">
             <h3 class="poppins mb-4 mt-3 display-6 fw-bold">Créer un nouveau compte</h3>
-            <form action="" class="d-flex flex-column">
+            <form action="" method="POST" class="d-flex flex-column">
               <div class="mb-1">
                 <label class="form-label text-muted" for="nom"><span class="text-danger me-1">*</span>Nom:</label>
-                <input type="text" class="form-control" id="nom" placeholder="Votre Nom..." required>
+                <input type="text" name="user_name" class="form-control" id="nom" placeholder="Votre Nom..." required>
               </div>
               <div class="mb-1">
                 <label class="form-label text-muted" for="email"><span class="text-danger me-1">*</span>Email:</label>
-                <input type="text" class="form-control" id="email" placeholder="Votre Email..." required>
+                <input type="email" name="user_email" class="form-control" id="email" placeholder="Votre Email..." required>
               </div>
               <div class="mb-1">
                 <label class="form-label text-muted" for="nbrtele"><span class="text-danger me-1">*</span>Numéro téléphone:</label>
-                <input type="text" class="form-control" id="nbrtele" placeholder="0600000000" required>
+                <input type="text" name="user_phone" class="form-control" id="nbrtele" placeholder="0600000000" required>
               </div>
               <div class="mb-1">
                 <label class="form-label text-muted" for="prenom"><span class="text-danger me-1">*</span>Mot de passe:</label>
-                <input type="password" class="form-control" id="prenom" placeholder="Votre Mot de Passe..." required>
+                <input type="password" name="user_password" class="form-control" id="prenom" placeholder="Votre Mot de Passe..." required>
               </div>
               <div class="my-2 text-center">
                 <input type="checkbox" name="" id="termes" required>
-                <label for="termes" class="form-label text-muted"><span class="text-danger me-1">*</span>J'accepte les conditions d'utilisation.</label>
+                <label for="termes" name="user_condition" class="form-label text-muted"><span class="text-danger me-1">*</span>J'accepte les conditions d'utilisation.</label>
               </div>
-              <button class="btn cta-btn">Enregistrer</button>
+              <button class="btn cta-btn" type="submit" name="submit">Enregistrer</button>
             </form>
             <p class="text-center text-muted mt-2 mb-0">Vous avez déja un compte? <a href="" style="color: var(--secondary-color);">Connectez maintenant.</a></p>
             <hr class="mt-2">
             <div class="d-flex justify-content-center">
-              <a href="#">
+              <a href="index.php">
                 <img src="assets/images/logo.png" alt="logo 3a9arlik" style="width: 150px">
               </a>
             </div>
