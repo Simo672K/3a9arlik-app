@@ -68,7 +68,7 @@
       </div>
     </div>
   </header>
-  <main class="text-dark">
+  <main class="text-dark mb-5 pb-5">
     <section class="my-5 py-5">
       <div class="container mt-5 pt-5">
         <div class="row">
@@ -90,7 +90,7 @@
     </section>
     <!-- How to -->
 
-    <section class="bg-primary">
+    <section class="bg-primary py-5">
       <div class="container py-5">
         <h2 class="poppins text-center display-5 fw-bold text-white mb-5 mt-4">
           Trouvez votre Appartement de rêve avec nous<span style="color: var(--secondary-color)">.</span>

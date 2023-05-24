@@ -76,7 +76,7 @@
   <div class="py-2" style="background-color: #06334b;">
     <div class="container">
       <p class="text-light text-small mb-0 text-center poppins">
-        &copy; Créer avec 💻 par Mohammed Hakmi & Zakariya Elassri - 2023 ✌
+        &copy; Créer avec 💻 par Mohammed Hakmi - 2023 ✌
       </p>
     </div>
   </div>

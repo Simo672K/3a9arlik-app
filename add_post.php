@@ -1,6 +1,13 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
+
+  if(!$_SESSION["user_logged"]){
+    http_response_code(403);
+    $title= "403 Forbidden";
+    $message= "You are not allowed to access this page";
+    require_once("error.php");
+  }else {
   
   if(isset($_POST["submit"]) && $_SESSION["user_logged"]){
     $file_count = count($_FILES["post_images"]["name"]);
@@ -15,7 +22,12 @@
       if ($file_error === UPLOAD_ERR_OK) {
         // Generate a unique filename
         $unique_file_name = generate_filename($file_name);
-        // // Move the uploaded file to the target directory
+        
+        // if (!file_exists(UPLOAD_DIR)) {
+        //   mkdir(UPLOAD_DIR, 0777, true);
+        // }
+          
+        // Move the uploaded file to the target directory
         if (move_uploaded_file($file_tmp_name, UPLOAD_DIR . $unique_file_name)) {
             array_push($images, $unique_file_name);
         } else {
@@ -231,3 +243,4 @@
 </body>
 
 </html>
+<?php }?>
