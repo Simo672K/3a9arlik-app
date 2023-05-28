@@ -4,6 +4,8 @@
 
   if(isset($_GET["post_id"])){
     Post::get_post($_GET["post_id"]);
+  }else{
+    header("Location:posts.php");
   }
   
 
@@ -111,7 +113,7 @@
   <section class="details-container">
     <aside class="content-container d-flex flex-column shadow-lg" style="z-index: 401;">
       <div class="px-3 shadow-sm py-1">
-        <a href="index.php">
+        <a href="index.php"> 
           <img src="assets/images/logo.png" style="width:160px" alt="3a9arLik logo">
         </a>
       </div>

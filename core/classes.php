@@ -53,8 +53,7 @@ class Post{
   static $result;
 
   public static function get_all_posts($limiter=null){
-    $query_result= DBhandler::get_result("SELECT * FROM " . POST_TABLE);
-    Post::$result= $query_result->fetch(PDO::FETCH_ASSOC);
+    Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE);
   }
 
   public static function create_post($values){
@@ -68,6 +67,7 @@ class Post{
   }
   public static function get_post($id){
     Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE . " WHERE post_id=$id");
+    DBhandler::$conn->query("UPDATE post SET post_views=post_views+1 WHERE post_id=$id");
   }
   public static function update_post(){}
   public static function delete_post(){}
