@@ -61,35 +61,37 @@
       </div>
       <div class="py-5"></div>
       <?php foreach(Post::$result as $key=>$value) {?>
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <?php if($value["post_images"]){?>
-          <img
-            class="card-img-left rounded"
-          />
-          <?php }?>
-        </div>
-        <div class="card-body px-4 py-3">
-          <div class="d-flex align-items-center">
-            <h3 class="card-title mb-0 poppins mt-2 fw-bold">
-            <?php echo $value["post_title"]?>
-            </h3>
-            <span class="badge ms-3" style="background-color: var(--secondary-color);font-weight: 700;box-shadow: 0px 0px 10px #66666666;">
-              À <?php echo $value["post_type"]?>
-            </span>
+      <a href="<?php echo "details.php?post_id=".$value["post_id"]?>" style="text-decoration: none">
+        <div class="card flex-row p-1 mb-4 card-result">
+          <div class="bg-placeholder overflow-hidden">
+            <?php if($value["post_images"]){?>
+            <img
+              class="card-img-left rounded"
+            />
+            <?php }?>
           </div>
-          <div class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $value["post_price"]?> DH</span>
-            <span class="d-flex align-items-center ms-3"><i data-feather="eye" class="me-1"></i><?php echo $value["post_views"]?></span>
-            <span class="d-flex align-items-center ms-3"><i data-feather="clock" class="me-1"></i><?php echo $value["post_added"]?></span>
-            <span class="d-flex align-items-center ms-3 fw-bold"><i data-feather="map-pin" class="me-1"></i><?php echo $value["post_city"]?></span>
+          <div class="card-body px-4 py-3">
+            <div class="d-flex align-items-center">
+              <h3 class="card-title mb-0 poppins mt-2 fw-bold text-dark">
+              <?php echo $value["post_title"]?>
+              </h3>
+              <span class="badge ms-3" style="background-color: var(--secondary-color);font-weight: 700;box-shadow: 0px 0px 10px #66666666;">
+                À <?php echo $value["post_type"]?>
+              </span>
+            </div>
+            <div class="card-text mb-3 text-muted text-small d-flex align-items-center">
+              <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $value["post_price"]?> DH</span>
+              <span class="d-flex align-items-center ms-3"><i data-feather="eye" class="me-1"></i><?php echo $value["post_views"]?></span>
+              <span class="d-flex align-items-center ms-3"><i data-feather="clock" class="me-1"></i><?php echo $value["post_added"]?></span>
+              <span class="d-flex align-items-center ms-3 fw-bold"><i data-feather="map-pin" class="me-1"></i><?php echo $value["post_city"]?></span>
+            </div>
+    
+            <p class="card-text text-body text-muted"style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+              <?php echo $value["post_description"]?>
+            </p>
           </div>
-  
-          <p class="card-text text-body text-muted"style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
-            <?php echo $value["post_description"]?>
-          </p>
         </div>
-      </div>
+      </a>
       <?php }?>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
