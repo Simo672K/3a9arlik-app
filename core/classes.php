@@ -53,7 +53,8 @@ class Post{
   static $result;
 
   public static function get_all_posts($limiter=null){
-    Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE);
+    Post::$result= DBhandler::get_result("SELECT post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name as post_city FROM " 
+    . POST_TABLE . " INNER JOIN city on post.post_city_id= city.city_id");
   }
 
   public static function create_post($values){

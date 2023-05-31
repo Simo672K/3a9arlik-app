@@ -27,10 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+CREATE DATABASE IF NOT EXISTS estates_db;
+USE estates_db;
+
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(50) NOT NULL,
-  `category_added` date DEFAULT current_timestamp()
+  `category_added` DATE DEFAULT (current_date())
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -54,7 +58,8 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(50) NOT NULL,
   `city_country` varchar(50) NOT NULL,
-  `city_added` date NOT NULL DEFAULT current_timestamp()
+  `city_added` date NOT NULL DEFAULT (current_date())
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,7 +89,8 @@ CREATE TABLE `post` (
   `post_city_id` int(11) DEFAULT NULL,
   `post_category_id` int(11) DEFAULT NULL,
   `post_type` enum('Louer','Acheter') DEFAULT NULL,
-  `post_added` datetime DEFAULT current_timestamp()
+  `post_added` datetime DEFAULT (current_timestamp())
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -106,7 +112,8 @@ CREATE TABLE `user` (
   `user_email` varchar(255) NOT NULL,
   `user_phone` varchar(20) NOT NULL,
   `user_password` varchar(255) NOT NULL,
-  `user_added` date NOT NULL DEFAULT current_timestamp()
+  `user_added` date NOT NULL DEFAULT (current_date())
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

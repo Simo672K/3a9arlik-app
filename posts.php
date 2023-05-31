@@ -1,6 +1,8 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
+
+  Post::get_all_posts();
 ?>
 
 <!DOCTYPE html>
@@ -55,102 +57,40 @@
           <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
             Filterer
           </button>
-          <!-- <div class="dropdown">
-            <button class="btn no-indecator rounded-pill border-custom me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-              <i class="fa-solid fa-filter"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end pt-3" style="width: 20rem;">
-              <li class="px-3">
-                <input type="checkbox" name="" id="enablePriceFilter">
-                <label class="ms-2" for="enablePriceFilter">Activer le filtrage par prix.</label>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="px-3 mb-2 text-muted" style="font-size: 0.9rem;">
-                Choisir un prix:
-              </li>
-              <li class="range mb-3 px-3">
-                <div class="range-slider">
-                  <span class="range-selected"></span>
-                </div>
-                <div class="range-input">
-                  <input type="range" class="min" min="0" max="1000" value="0" step="10">
-                  <input type="range" class="max" min="0" max="1000" value="1000" step="10">
-                </div>
-                <div class="range-price">
-                  <input type="hidden" name="min-prix" value="0">      
-                  <input type="hidden" name="max-prix" value="1000">      
-                </div>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="px-3">
-                <p class="mb-0">Prix: <span id="min-prix">0</span>~<span id="max-prix">0</span> MAD</p>
-              </li>
-            </ul>
-          </div> -->
         </form>
       </div>
       <div class="py-5"></div>
+      <?php foreach(Post::$result as $key=>$value) {?>
       <div class="card flex-row p-1 mb-4 card-result">
         <div class="bg-placeholder overflow-hidden">
+          <?php if($value["post_images"]){?>
           <img
             class="card-img-left rounded"
           />
+          <?php }?>
         </div>
         <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
+          <div class="d-flex align-items-center">
+            <h3 class="card-title mb-0 poppins mt-2 fw-bold">
+            <?php echo $value["post_title"]?>
+            </h3>
+            <span class="badge ms-3" style="background-color: var(--secondary-color);font-weight: 700;box-shadow: 0px 0px 10px #66666666;">
+              À <?php echo $value["post_type"]?>
+            </span>
+          </div>
+          <div class="card-text mb-3 text-muted text-small d-flex align-items-center">
+            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $value["post_price"]?> DH</span>
+            <span class="d-flex align-items-center ms-3"><i data-feather="eye" class="me-1"></i><?php echo $value["post_views"]?></span>
+            <span class="d-flex align-items-center ms-3"><i data-feather="clock" class="me-1"></i><?php echo $value["post_added"]?></span>
+            <span class="d-flex align-items-center ms-3 fw-bold"><i data-feather="map-pin" class="me-1"></i><?php echo $value["post_city"]?></span>
+          </div>
   
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
+          <p class="card-text text-body text-muted"style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+            <?php echo $value["post_description"]?>
           </p>
         </div>
       </div>
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <img
-            class="card-img-left rounded"
-          />
-        </div>
-        <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
-  
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
-          </p>
-        </div>
-      </div>
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <img
-            class="card-img-left rounded"
-          />
-        </div>
-        <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
-  
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
-          </p>
-        </div>
-      </div>
-
+      <?php }?>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -179,34 +119,6 @@
         navBar.classList.remove("shrink");
       }
     });
-
-    // let rangeMin = 100;
-    // const range = document.querySelector(".range-selected");
-    // const rangeInput = document.querySelectorAll(".range-input input");
-    // const rangePrice = document.querySelectorAll(".range-price input");
-    // const minPrix = document.getElementById("min-prix");
-    // const maxPrix = document.getElementById("max-prix");
-
-    // rangeInput.forEach((input) => {
-    //   input.addEventListener("input", (e) => {
-    //     let minRange = parseInt(rangeInput[0].value);
-    //     let maxRange = parseInt(rangeInput[1].value);
-    //     if (maxRange - minRange < rangeMin) {     
-    //       if (e.target.className === "min") {
-    //         rangeInput[0].value = maxRange - rangeMin;        
-    //       } else {
-    //         rangeInput[1].value = minRange + rangeMin;        
-    //       }
-    //     } else {
-    //       rangePrice[0].value = minRange;
-    //       rangePrice[1].value = maxRange;
-    //       range.style.left = (minRange / rangeInput[0].max) * 100 + "%";
-    //       range.style.right = 100 - (maxRange / rangeInput[1].max) * 100 + "%";
-    //       minPrix.textContent = rangePrice[0].value;
-    //       maxPrix.textContent = rangePrice[1].value;
-    //     }
-    //   });
-    // });
   </script>
 </body>
 
