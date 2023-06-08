@@ -19,6 +19,7 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/css/aos.css">
   <link rel="stylesheet" href="assets/css/main.min.css">
 
   <title>3a9arLik | Accueil</title>
@@ -72,10 +73,10 @@
     <section class="my-5 py-5">
       <div class="container mt-5 pt-5">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6" data-aos="fade-right" data-aos-offset="300">
             <img class="img-fluid curved-img" src="assets/images/apropos-img.jpg" alt="A-propos-de-nous-image">
           </div>
-          <div class="col-md-6 d-flex flex-column ps-4">
+          <div class="col-md-6 d-flex flex-column ps-4" data-aos="fade-up" data-aos-offset="300">
             <h2 class="poppins display-5 fw-bold mb-3 mt-2">A propos de nous</h2>
             <p class="section-text">
               <strong style="border-bottom: dotted 2px var(--secondary-color);">3a9arLik</strong> est la plateforme idéale pour trouver et acheter des biens immobiliers dans votre région. Avec notre sélection variée de propriétés et notre équipe dédiée, nous simplifions le processus de recherche et d'achat. Rejoignez-nous dès maintenant et trouvez la maison de vos rêves en quelques clics.
@@ -97,7 +98,7 @@
         </h2>
         <div class="row mb-4">
           <div class="col-md-3">
-            <div class="card bg-secondary" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
+            <div class="card bg-secondary" data-aos="fade-up" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
               <div class="card-body text-center">
                 <h3 class="poppins fw-semibold">1. Chercher</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -105,7 +106,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card bg-secondary" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
+            <div class="card bg-secondary" data-aos="fade-up" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
               <div class="card-body text-center">
                 <h3 class="poppins fw-semibold">2. Choisir</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -113,7 +114,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card bg-secondary" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
+            <div class="card bg-secondary" data-aos="fade-up" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
               <div class="card-body text-center">
                 <h3 class="poppins fw-semibold">3. Contacter</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -121,7 +122,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div class="card bg-secondary" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
+            <div class="card bg-secondary" data-aos="fade-up" style="border-radius: 25px ;border-top-right-radius: 0; border-bottom-left-radius: 0;">
               <div class="card-body text-center">
                 <h3 class="poppins fw-semibold">4. Demenager</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -205,6 +206,7 @@
   <?php include("includes/footer.php")?>
   <script src="vendors/js/bootstrap.bundle.min.js"></script>
   <script src="vendors/js/feather.min.js"></script>
+  <script src="vendors/js/aos.js"></script>
   <script>
     feather.replace({ class: "f-icon" });
     let navBar = document.querySelector(".navbar");
@@ -220,7 +222,7 @@
       }
     });
 
-
+    AOS.init();
     const txts = document.querySelectorAll(".text-content"),
       txtsLen = txts.length;
     let index = 0;

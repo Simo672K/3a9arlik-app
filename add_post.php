@@ -1,7 +1,8 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
-
+  
+  $show_alert= false;
   if(!$_SESSION["user_logged"]){
     http_response_code(403);
     $title= "403 Forbidden";
@@ -52,6 +53,7 @@
     ];
 
     Post::create_post($values);
+    $show_alert= true;
   }
 ?>
 
@@ -89,7 +91,11 @@
 
 <body>
   <?php include("includes/navbar.php")?>
-
+  <?php if($show_alert){?>
+  <div class="alert alert-success position-fixed" style="z-index: 50">
+    Votre post a été creer avec succée!
+  </div>
+  <?php }?>
   <main>
     <div class="container py-2 my-5">
       <nav class="card bg-gray mb-4 border-0" aria-label="breadcrumb">
