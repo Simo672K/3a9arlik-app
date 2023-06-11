@@ -66,6 +66,15 @@ class Post{
     ");
     $query->execute($values);
   }
+
+  public static function get_post_user_data($id){
+    $query = DBhandler::$conn->prepare("SELECT post.post_user_id, user.user_name, user.user_phone FROM post INNER JOIN user ON user.user_id = post.post_user_id WHERE post_id = :id");
+    $query->execute(array("id" => $id));
+
+    $result= $query->fetch(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
   public static function get_post($id){
     Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE . " WHERE post_id=$id");
     DBhandler::$conn->query("UPDATE post SET post_views=post_views+1 WHERE post_id=$id");

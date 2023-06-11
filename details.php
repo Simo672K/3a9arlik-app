@@ -4,6 +4,7 @@
 
   if(isset($_GET["post_id"])){
     Post::get_post($_GET["post_id"]);
+    $user_data= Post::get_post_user_data($_GET["post_id"]);
   }else{
     header("Location:posts.php");
   }
@@ -28,6 +29,7 @@
   <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/css/leaflet.css">
   <link rel="stylesheet" href="vendors/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="vendors/css/all.min.css">
   <link rel="stylesheet" href="assets/css/price-range.min.css">
   <link rel="stylesheet" href="assets/css/main.min.css">
 
@@ -105,6 +107,18 @@
       position: relative;
       z-index: 2;
     }
+    .contact-item {
+    }
+    .contact-item a {
+      padding: 1rem;
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    .contact-nav{
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+    }
   </style>
 </head>
 
@@ -123,6 +137,7 @@
           <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $row["post_price"]?> DH</span>
           <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i><?php echo $row["post_views"]?></span>
           <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i><?php echo $row["post_added"]?></span>
+          <span class="d-flex align-items-center"><i data-feather="user" class="me-1 ms-3"></i><?php echo $user_data["user_name"]?></span>
         </p>
         <div class="description-preview mb-auto d-flex flex-column" style="height: 25%;">
           <p class="mb-0" style="text-align: justify; max-height: 100%; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5;">
@@ -135,7 +150,17 @@
             Lire la suite
           </button>
         </div>
-
+        <ul class="position-fixed nav flex-column contact-nav">
+          <li class="bg-primary contact-item">
+            <a class="d-block" href="tel:<?php echo $user_data["user_phone"]?>" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Appler directement"><i class="fa-solid fa-phone"></i></a>
+          </li>
+          <li class="bg-success contact-item">
+            <a class="d-block" href="https://wa.me/<?php echo $user_data["user_phone"]?>" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Contacter sur whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+          </li>
+          <li class="bg-info contact-item">
+            <a class="d-block" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Envoyer un message directement"><i class="fa-solid fa-message"></i></a>
+          </li>
+        </ul>
         <!-- gallery slider -->
         <div class="swiper mb-3" style="width: 450px; border-radius: 15px;">
           <div class="swiper-wrapper">
@@ -235,6 +260,8 @@
   <script src="vendors/js/feather.min.js"></script>
   <script src="vendors/js/swiper-bundle.min.js"></script>
   <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     feather.replace();
     var mapContainer= document.getElementById("map");
     var map = L.map('map').setView(JSON.parse(mapContainer.getAttribute("data-map")), 13);
