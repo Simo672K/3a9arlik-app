@@ -1,6 +1,10 @@
 <?php
   require_once("core/init_session.php");
   require_once("core/classes.php");
+
+  if(isset($_GET["submit"])){
+    Post::filter_posts($_GET["ville"], $_GET["category"], $_GET["type"]);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +34,8 @@
 
   <main>
     <div class="container pb-5 my-5">
-      <div class="card w-100 bg-white p-4 shadow mb-5" style="border-radius: 15px; border: solid 2px #06334b;">
+      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Resultat de recherche (<?php echo Post::$result->rowCount() ?>):</h2>
+      <div class="card w-100 bg-white p-4 border-0 mb-5">
         <form action="search.php" metod="get" class="d-flex">
           <select class="form-select me-2" name="ville" >
             <option value="all">Toutes les villes</option>
@@ -45,9 +50,9 @@
             }?>            
           </select>
           <div class="d-flex align-items-center me-3">
-            <input type="radio" class="me-1" name="type" value="louer" id="a-louer" checked>
+            <input type="radio" class="me-1" name="type" value="Louer" id="a-louer" checked>
             <label for="a-louer" class="me-3">Louer</label>
-            <input type="radio" class="me-1" name="type" value="acheter" id="a-acheter">
+            <input type="radio" class="me-1" name="type" value="Acheter" id="a-acheter">
             <label for="a-acheter">Acheter</label>
           </div>
           <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
@@ -88,68 +93,40 @@
           </div> -->
         </form>
       </div>
-      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Resultat de recherche:</h2>
       
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <img
-            class="card-img-left rounded"
-          />
+      <?php foreach(Post::$result as $key=>$value) {?>
+      <a href="<?php echo "details.php?post_id=".$value["post_id"]?>" style="text-decoration: none">
+        <div class="card flex-row p-1 mb-4 card-result">
+          <div class="bg-placeholder overflow-hidden">
+            <?php if($value["post_images"]){?>
+            <img
+              class="card-img-left rounded"
+            />
+            <?php }?>
+          </div>
+          <div class="card-body px-4 py-3">
+            <div class="d-flex align-items-center">
+              <h3 class="card-title mb-0 poppins mt-2 fw-bold text-dark">
+              <?php echo $value["post_title"]?>
+              </h3>
+              <span class="badge ms-3" style="background-color: var(--secondary-color);font-weight: 700;box-shadow: 0px 0px 10px #66666666;">
+                À <?php echo $value["post_type"]?>
+              </span>
+            </div>
+            <div class="card-text mb-3 text-muted text-small d-flex align-items-center">
+              <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;"><?php echo $value["post_price"]?> DH</span>
+              <span class="d-flex align-items-center ms-3"><i data-feather="eye" class="me-1"></i><?php echo $value["post_views"]?></span>
+              <span class="d-flex align-items-center ms-3"><i data-feather="clock" class="me-1"></i><?php echo $value["post_added"]?></span>
+              <span class="d-flex align-items-center ms-3 fw-bold"><i data-feather="map-pin" class="me-1"></i><?php echo $value["post_city"]?></span>
+            </div>
+    
+            <p class="card-text text-body text-muted"style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+              <?php echo $value["post_description"]?>
+            </p>
+          </div>
         </div>
-        <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
-  
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
-          </p>
-        </div>
-      </div>
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <img
-            class="card-img-left rounded"
-          />
-        </div>
-        <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
-  
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
-          </p>
-        </div>
-      </div>
-      <div class="card flex-row p-1 mb-4 card-result">
-        <div class="bg-placeholder overflow-hidden">
-          <img
-            class="card-img-left rounded"
-          />
-        </div>
-        <div class="card-body px-4 py-3">
-          <h3 class="card-title mb-0 poppins mt-2 fw-bold">Home for sell</h3>
-          <p class="card-text mb-3 text-muted text-small d-flex align-items-center">
-            <span class="fw-bold" style="color: var(--secondary-color); font-size: 1.1rem;">3,000 DH</span>
-            <span class="d-flex align-items-center"><i data-feather="eye" class="me-1 ms-3"></i>122</span>
-            <span class="d-flex align-items-center"><i data-feather="clock" class="me-1 ms-3"></i>12/05/2023</span>
-          </p>
-  
-          <p class="card-text text-body text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime harum
-            illo ex, officia animi numquam facilis ab earum, iusto quae.
-          </p>
-        </div>
-      </div>
+      </a>
+      <?php }?>
 
       <nav aria-label="Page navigation example">
         <ul class="pagination">

@@ -2,7 +2,11 @@
   require_once("core/init_session.php");
   require_once("core/classes.php");
 
-  Post::get_all_posts();
+  if(isset($_GET["post_type"])){
+    Post::filter_posts("all", "all", $_GET["post_type"]);
+  }else {
+    Post::get_all_posts();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +36,7 @@
 
   <main>
     <div class="container pb-5 my-5">
-      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Toutes les annonces</h2>
-      <h4><i data-feather="filter"></i> Filtrer par :</h4>
+      <h2 class="poppins fw-bold display-5 mb-5 text-center pt-5">Toutes les annonces(<?php echo Post::$result->rowCount() ?>)</h2>
       <div class="w-100 bg-white mb-5">
         <form action="search.php" metod="get" class="d-flex">
           <select class="form-select me-2" name="ville" >
@@ -49,13 +52,14 @@
             }?>            
           </select>
           <div class="d-flex align-items-center me-3">
-            <input type="radio" class="me-1" name="type" value="louer" id="a-louer" checked>
+            <input type="radio" class="me-1" name="type" value="Louer" id="a-louer" checked>
             <label for="a-louer" class="me-3">Louer</label>
-            <input type="radio" class="me-1" name="type" value="acheter" id="a-acheter">
+            <input type="radio" class="me-1" name="type" value="Acheter" id="a-acheter">
             <label for="a-acheter">Acheter</label>
           </div>
           <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
-            Filterer
+            <i class="fa-solid fa-magnifying-glass-location me-2"></i>
+            Rechercher
           </button>
         </form>
       </div>

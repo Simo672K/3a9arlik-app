@@ -38,7 +38,7 @@
               Annonces <i data-feather="chevron-down"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="posts.php?post_type=louer">Louer</a></li>
+              <li><a class="dropdown-item" href="posts.php?post_type=Louer">Louer</a></li>
               <li><a class="dropdown-item" href="posts.php?post_type=Acheter">Acheter</a></li>
             </ul>
           </li>

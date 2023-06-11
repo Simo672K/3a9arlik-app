@@ -56,9 +56,9 @@
             }?>            
           </select>
           <div class="d-flex align-items-center me-3">
-            <input type="radio" class="me-1" name="type" value="louer" id="a-louer" checked>
+            <input type="radio" class="me-1" name="type" value="Louer" id="a-louer" checked>
             <label for="a-louer" class="me-3">Louer</label>
-            <input type="radio" class="me-1" name="type" value="acheter" id="a-acheter">
+            <input type="radio" class="me-1" name="type" value="Acheter" id="a-acheter">
             <label for="a-acheter">Acheter</label>
           </div>
           <button type="submit" name="submit" class="btn cta-btn d-flex align-items-center">
