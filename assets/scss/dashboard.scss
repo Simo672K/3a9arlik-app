@@ -1,0 +1,91 @@
+@import "variables";
+html, body{
+    height: 100%;
+}
+
+main{
+    height: 100%;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+}
+
+.sidebar{
+    flex-basis: 20%;
+    &-inner{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    &-nav-container{
+        flex-grow: 1;
+    }
+    &-nav{
+        width: 100%;
+    }
+    &-item{
+        width: 100%;
+    }
+
+    &-link{
+        text-decoration: none !important;
+        font-weight: 500;
+        color: $primary-color;
+        display: block;
+        padding: 0.3rem 1.2rem;
+        font-size: 1.2rem;
+        width: 100%;
+        &:hover, &.active{
+            color: white;
+            background-color: $secondary-color;
+        }
+    }
+}
+
+.red-dot{
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    top: 5px;
+    right: 5px;
+}
+
+.nav-icon{
+    width: 45px;
+    height: 40px;
+}
+.dropdown{
+    &-toggle{
+        padding: 0;
+        &::after{
+            content: none;
+        }
+    }
+}
+
+.collapse{
+    &-nav{
+        flex-direction: column;
+    }
+    &-item{
+        width: 100%;
+    }
+    &-link{
+        text-decoration: none !important;
+        color: $primary-color;
+        display: block;
+        padding: 0.3rem 2.5rem;
+        font-size: 1rem;
+        width: 100%;
+        &:hover, &.active{
+            color: $primary-color;
+            background-color: #dedede;
+        }
+    }
+}
+.main {
+    background: #f3f2f1;
+    flex-basis: 80%;
+}
