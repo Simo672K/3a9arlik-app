@@ -130,7 +130,17 @@
     <script src="../vendors/js/chart.umd.js"></script>
     <script>
         feather.replace();
+        let average=0;
+        let data= [0, 9, 4, 12, 5, 7, 2, 17, 16, 0];
 
+        for (let d of data){
+            average+=d;
+        }
+        average=average/data.length;
+
+        const averageLine = {
+            id:'averageLine'
+        }
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {
             type: 'line',
@@ -138,9 +148,22 @@
                 labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
                 datasets: [{
                     label: 'Les Vues Totales',
-                    data: [0, 0, 0, 12, 5, 7, 2, 17, 25, 0],
+                    data: [0, 9, 4, 12, 5, 7, 2, 17, 16, 0],
                     borderWidth: 3,
                     tension: 0.3,
+                    borderColor: "rgb(57,163,232)",
+                    backgroundColor: (context)=>{
+                        const bgColor= ["rgba(57,163,232,0.8)", "rgba(57,163,232,0.1)"];
+                        if(!context.chart.chartArea){
+                            return
+                        }
+                        const { ctx, data, chartArea: {top, bottom} } = context.chart;
+                        const gradientBg= ctx.createLinearGradient(0, top, 0, bottom);
+                        gradientBg.addColorStop(0, bgColor[0]);
+                        gradientBg.addColorStop(1, bgColor[1]);
+                        return gradientBg;
+                    },
+                    fill: true
                 }]
             },
             options: {
@@ -149,7 +172,8 @@
                         beginAtZero: true
                     }
                 }
-            }
+            },
+            plugins: [averageLine]
         });
     </script>
 </body>
