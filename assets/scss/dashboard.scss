@@ -1,91 +1,137 @@
 @import "variables";
-html, body{
-    height: 100%;
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
-main{
+html,
+body {
+  height: 100%;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+}
+.bg{
+  &-custom{
+    background-color: $secondary-color;
+  }
+}
+.sidebar {
+  flex-basis: 20%;
+
+  &-inner {
     height: 100%;
     display: flex;
-    font-family: "Montserrat", sans-serif;
-}
+    flex-direction: column;
+  }
 
-.sidebar{
-    flex-basis: 20%;
-    &-inner{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    &-nav-container{
-        flex-grow: 1;
-    }
-    &-nav{
-        width: 100%;
-    }
-    &-item{
-        width: 100%;
-    }
+  &-nav-container {
+    flex-grow: 1;
+  }
 
-    &-link{
-        text-decoration: none !important;
-        font-weight: 500;
-        color: $primary-color;
-        display: block;
-        padding: 0.3rem 1.2rem;
-        font-size: 1.2rem;
-        width: 100%;
-        &:hover, &.active{
-            color: white;
-            background-color: $secondary-color;
-        }
-    }
-}
+  &-nav {
+    width: 100%;
+  }
 
-.red-dot{
-    position: absolute;
+  &-item {
     display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #dc3545;
-    top: 5px;
-    right: 5px;
+    width: 100%;
+  }
+
+  &-link {
+    text-decoration: none !important;
+    font-weight: 500;
+    color: $primary-color;
+    display: block;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.2rem;
+    width: 100%;
+
+    &:hover,
+    &.active {
+      background-color: $secondary-color;
+      color: $primary-color;
+    }
+    
+    &.active {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2.45rem;
+        height: 2.45rem;
+        top: 7px;
+        right: -1.35rem;
+        z-index: 2;
+        transform: rotate(45deg);
+        background: $secondary-color;
+      }
+    }
+  }
 }
 
-.nav-icon{
-    width: 45px;
-    height: 40px;
-}
-.dropdown{
-    &-toggle{
-        padding: 0;
-        &::after{
-            content: none;
-        }
-    }
+.red-dot {
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #dc3545;
+  top: 5px;
+  right: 5px;
 }
 
-.collapse{
-    &-nav{
-        flex-direction: column;
-    }
-    &-item{
-        width: 100%;
-    }
-    &-link{
-        text-decoration: none !important;
-        color: $primary-color;
-        display: block;
-        padding: 0.3rem 2.5rem;
-        font-size: 1rem;
-        width: 100%;
-        &:hover, &.active{
-            color: $primary-color;
-            background-color: #dedede;
-        }
-    }
+.nav-icon {
+  width: 45px;
+  height: 40px;
 }
+
+.dropdown {
+  &-toggle {
+    padding: 0;
+
+    &::after {
+      content: none;
+    }
+  }
+}
+
+.collapse {
+  &-nav {
+    flex-direction: column;
+  }
+
+  &-item {
+    width: 100%;
+  }
+
+  &-link {
+    text-decoration: none !important;
+    color: $primary-color;
+    display: block;
+    padding: 0.5rem 2.5rem;
+    font-size: 1rem;
+    width: 100%;
+
+    &:hover,
+    &.active {
+      color: $primary-color;
+      background-color: #dedede;
+    }
+  }
+}
+
 .main {
-    background: #f3f2f1;
-    flex-basis: 80%;
+  background: #f3f2f1;
+  flex-basis: 80%;
+}
+
+.card{
+  &-mini{
+    color: #fff;
+    background-color: $primary-color;
+  }
 }

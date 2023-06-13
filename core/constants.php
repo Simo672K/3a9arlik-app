@@ -1,8 +1,8 @@
 <?php 
 define("DB_NAME", "estates_db");
 define("DB_USER", "root");
-// define("DB_PASSWORD", "");
-define("DB_PASSWORD", "massaka9310");
+define("DB_PASSWORD", "");
+// define("DB_PASSWORD", "massaka9310");
 
 
 define("UPLOAD_DIR", "uploads/");

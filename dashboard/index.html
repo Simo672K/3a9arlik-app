@@ -2,180 +2,243 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../vendors/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendors/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/dashboard.min.css">
-    <title>3a9arlik | Tableau de bord</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../vendors/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../vendors/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.min.css">
+  <title>3a9arlik | Tableau de bord</title>
 </head>
 
 <body>
-    <main>
-        <aside class="sidebar" style="border-right: solid 1px #dedede">
-            <div class="sidebar-inner">
-                <div class="py-1 px-2">
-                    <a href="">
-                        <img src="../assets/images/logo.png" alt="3a9arlik logo" class="logo">
+  <main>
+    <aside class="sidebar" style="border-right: solid 1px #dedede">
+      <div class="sidebar-inner">
+        <div class="py-1 px-2">
+          <a href="">
+            <img src="../assets/images/logo.png" alt="3a9arlik logo" class="logo">
+          </a>
+        </div>
+        <div class="mt-1 pt-3 sidebar-nav-container d-flex flex-column">
+          <ul class="nav sidebar-nav">
+            <li class="sidebar-item">
+              <a class="sidebar-link active" href="#">
+                <i class="fa-solid fa-chart-pie me-2"></i> Tableau de bord
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link d-flex align-items-center" data-bs-toggle="collapse" href="#postCRUD" role="button"
+                aria-expanded="false" aria-controls="postCRUD">
+                <i class="fa-solid fa-bullhorn me-2"></i> Vos Postes
+                <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 1rem;"></i>
+              </a>
+              <div class="collapse show" id="postCRUD">
+                <ul class="nav collapse-nav">
+                  <li class="collapse-item">
+                    <a href="" class="collapse-link">
+                      Details
                     </a>
-                </div>
-                <div class="mt-4 px-2 sidebar-nav-container d-flex flex-column">
-                    <ul class="nav sidebar-nav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="#">
-                                <i class="fa-solid fa-chart-pie me-2"></i> Tableau de bord
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link d-flex align-items-center" data-bs-toggle="collapse" href="#postCRUD"
-                                role="button" aria-expanded="false" aria-controls="postCRUD">
-                                <i class="fa-solid fa-bullhorn me-2"></i> Vos Postes
-                                <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 1rem;"></i>
-                            </a>
-                            <div class="collapse show" id="postCRUD">
-                                <ul class="nav collapse-nav">
-                                    <li class="collapse-item">
-                                        <a href="" class="collapse-link">
-                                            Details
-                                        </a>
-                                    </li>
-                                    <li class="collapse-item">
-                                        <a href="" class="collapse-link">
-                                            Ajouter un poste
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="#">
-                                <i class="fa-solid fa-user me-2"></i> Profile</a>
-                        </li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="#">
-                                <i class="fa-solid fa-gear me-2"></i> Paramètres</a>
-                        </li>
-                    </ul>
-                    <div class="sidebar-item mt-auto mb-2"><a class="sidebar-link" href="#">
-                            <i class="fa-solid fa-right-from-bracket me-2"></i> Se deconnecter</a>
-                    </div>
-                </div>
+                  </li>
+                  <li class="collapse-item">
+                    <a href="" class="collapse-link">
+                      Ajouter un poste
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-item"><a class="sidebar-link" href="#">
+                <i class="fa-solid fa-user me-2"></i> Profile</a>
+            </li>
+            <li class="sidebar-item"><a class="sidebar-link" href="#">
+                <i class="fa-solid fa-gear me-2"></i> Paramètres</a>
+            </li>
+          </ul>
+          <div class="sidebar-item mt-auto mb-2"><a class="sidebar-link" href="#">
+              <i class="fa-solid fa-right-from-bracket me-2"></i> Se deconnecter</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <section class="main">
+      <nav class="navbar navbar-expand-lg bg-white border-bottom">
+        <div class="container-fluid py-2">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+              <li class="nav-item dropdown pt-2 me-4">
+                <a class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i style="width: 30px; height: 40px;" data-feather="mail"></i>
+                  <span class="red-dot"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end mt-2">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="nav-icon" data-feather="user"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end mt-2">
+                  <li class="px-4 py-2 d-flex flex-column text-center">
+                    <p class="mb-0 user-name">Mohammed Hakmi</p>
+                    <span class="text-muted user-email" style="font-size: 0.9rem;">example@email.com</span>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid pt-3">
+        <div class="row mb-4">
+          <div class="col-3">
+            <div class="card card-mini">
+              <div class="card-body">
+                <h3 class="poppins">Totale des Postes</h3>
+                <h5 class="display-5 poppins fw-bold ps-2">25</h5>
+              </div>
             </div>
-        </aside>
-        <section class="main">
-            <nav class="navbar navbar-expand-lg bg-white border-bottom">
-                <div class="container-fluid py-2">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                            <li class="nav-item dropdown pt-2 me-4">
-                                <a class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i style="width: 30px; height: 40px;" data-feather="mail"></i>
-                                    <span class="red-dot"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end mt-2">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="nav-icon" data-feather="user"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end mt-2">
-                                    <li class="px-4 py-2 d-flex flex-column text-center">
-                                        <p class="mb-0 user-name">Mohammed Hakmi</p>
-                                        <span class="text-muted user-email" style="font-size: 0.9rem;">example@email.com</span>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="container-fluid pt-3">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card p-4">
-                            <div class="card-title">
-                                <h4 class="fs-2 mb-4">Statistique du dernier mois</h4>
-                                <canvas id="myChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4"></div>
-                </div>
+          </div>
+          <div class="col-3">
+            <div class="card card-mini">
+              <div class="card-body">
+                <h3 class="poppins">Totale des Vues</h3>
+                <h5 class="display-5 poppins fw-bold ps-2">5829</h5>
+              </div>
             </div>
-        </section>
-    </main>
-    <script src="../vendors/js/bootstrap.bundle.min.js"></script>
-    <script src="../vendors/js/feather.min.js"></script>
-    <script src="../vendors/js/chart.umd.js"></script>
-    <script>
-        feather.replace();
-        let average=0;
-        let data= [0, 9, 4, 12, 5, 7, 2, 17, 16, 0];
+          </div>
+          <div class="col-3">
+            <div class="card card-mini">
+              <div class="card-body">
+                <h3 class="poppins">Votre Rank</h3>
+                <h5 class="display-5 poppins fw-bold ps-2">189</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card card-mini">
+              <div class="card-body">
+                <h3 class="poppins">Nombre de Points</h3>
+                <h5 class="display-5 poppins fw-bold ps-2">50</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card p-4">
+              <div class="card-title">
+                <h3 class="fs-2 mb-4">Les vues du dernier mois.</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card p-4">
+              <div class="card-title">
+                <h3>Vos top postes:</h3>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Titre</th>
+                      <th>Date</th>
+                      <th>Prix</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../vendors/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendors/js/feather.min.js"></script>
+  <script src="../vendors/js/chart.umd.js"></script>
+  <script>
+    feather.replace();
+    let average = 0;
+    let data = [0, 9, 4, 12, 5, 7, 2, 17, 16, 0];
 
-        for (let d of data){
-            average+=d;
-        }
-        average=average/data.length;
+    for (let d of data) {
+      average += d;
+    }
+    average = average / data.length;
 
-        const averageLine = {
-            id:'averageLine'
+    const averageLine = {
+      id: 'averageLine',
+      beforeDatasetDraw(chart, args, options) {
+        const { ctx, chartArea: { top, right, bottom, left, width, height }, scales: { x, y } } = chart;
+        ctx.save();
+
+        ctx.strokeStyle = "gray";
+        ctx.setLineDash([15, 50]);
+        ctx.strokeRect(left, y.getPixelForValue(average), width, 0);
+        ctx.restore();
+      }
+    }
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        datasets: [{
+          label: 'Les Vues Totales',
+          data: [0, 9, 4, 12, 5, 7, 2, 17, 16, 0],
+          borderWidth: 3,
+          tension: 0.3,
+          borderColor: "rgb(57,163,232)",
+          backgroundColor: (context) => {
+            const bgColor = ["rgba(57,163,232,0.8)", "rgba(57,163,232,0.1)"];
+            if (!context.chart.chartArea) {
+              return
+            }
+            const { ctx, data, chartArea: { top, bottom } } = context.chart;
+            const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+            gradientBg.addColorStop(0, bgColor[0]);
+            gradientBg.addColorStop(1, bgColor[1]);
+            return gradientBg;
+          },
+          fill: true
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
-        const ctx = document.getElementById('myChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-                datasets: [{
-                    label: 'Les Vues Totales',
-                    data: [0, 9, 4, 12, 5, 7, 2, 17, 16, 0],
-                    borderWidth: 3,
-                    tension: 0.3,
-                    borderColor: "rgb(57,163,232)",
-                    backgroundColor: (context)=>{
-                        const bgColor= ["rgba(57,163,232,0.8)", "rgba(57,163,232,0.1)"];
-                        if(!context.chart.chartArea){
-                            return
-                        }
-                        const { ctx, data, chartArea: {top, bottom} } = context.chart;
-                        const gradientBg= ctx.createLinearGradient(0, top, 0, bottom);
-                        gradientBg.addColorStop(0, bgColor[0]);
-                        gradientBg.addColorStop(1, bgColor[1]);
-                        return gradientBg;
-                    },
-                    fill: true
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
-            plugins: [averageLine]
-        });
-    </script>
+      },
+      plugins: [averageLine]
+    });
+  </script>
 </body>
 
 </html>
