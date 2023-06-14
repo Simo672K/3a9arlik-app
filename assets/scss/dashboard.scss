@@ -136,5 +136,6 @@ main {
 .card{
   &-mini{
     color: #fff;
+    border-bottom: solid 10px $primary-color !important;
   }
 }
