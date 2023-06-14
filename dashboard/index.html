@@ -28,7 +28,7 @@
             <img src="../assets/images/logo.png" alt="3a9arlik logo" class="logo">
           </a>
         </div>
-        <div class="mt-1 pt-3 sidebar-nav-container d-flex flex-column">
+        <div class="mt-1 pt-1 sidebar-nav-container d-flex flex-column">
           <ul class="nav sidebar-nav">
             <li class="sidebar-item">
               <a class="sidebar-link active" href="#">
@@ -111,71 +111,181 @@
       </nav>
 
       <div class="container-fluid pt-3">
-        <div class="row mb-4">
+        <div class="row mb-3">
           <div class="col-3">
-            <div class="card card-mini">
+            <div class="card shadow border-0 card-mini">
               <div class="card-body">
-                <h3 class="poppins">Totale des Postes</h3>
+                <h3 class="poppins">
+                  <i class="fa-solid fa-location-dot me-2"></i>
+                  Totale de Locaux
+                </h3>
                 <h5 class="display-5 poppins fw-bold ps-2">25</h5>
               </div>
             </div>
           </div>
           <div class="col-3">
-            <div class="card card-mini">
+            <div class="card shadow border-0 card-mini">
               <div class="card-body">
-                <h3 class="poppins">Totale des Vues</h3>
+                <h3 class="poppins">
+                  <i class="fa-solid fa-eye me-2"></i>
+                  Totale des Vues
+                </h3>
                 <h5 class="display-5 poppins fw-bold ps-2">5829</h5>
               </div>
             </div>
           </div>
           <div class="col-3">
-            <div class="card card-mini">
+            <div class="card shadow border-0 card-mini">
               <div class="card-body">
-                <h3 class="poppins">Votre Rank</h3>
+                <h3 class="poppins">
+                  <i class="fa-solid fa-star me-2"></i>
+                  Votre Rank
+                </h3>
                 <h5 class="display-5 poppins fw-bold ps-2">189</h5>
               </div>
             </div>
           </div>
           <div class="col-3">
-            <div class="card card-mini">
+            <div class="card shadow border-0 card-mini">
               <div class="card-body">
-                <h3 class="poppins">Nombre de Points</h3>
+                <h3 class="poppins">
+                  <i class="fa-solid fa-inbox me-2"></i>
+                  Inbox
+                </h3>
                 <h5 class="display-5 poppins fw-bold ps-2">50</h5>
               </div>
             </div>
           </div>
         </div>
+
+
         <div class="row">
-          <div class="col-6">
-            <div class="card p-4">
-              <div class="card-title">
-                <h3 class="fs-2 mb-4">Les vues du dernier mois.</h3>
-              </div>
-              <div class="card-body">
-                <canvas id="myChart"></canvas>
+          <div class="col-5">
+            <div class="card p-4 shadow border-0">
+              <h3>L'activiter sur vos postes.</h3>
+              <p class="my-1">Durans le dernier mois</p>
+              <div class="card-body" style="max-height: 300px;">
+                <canvas id="viewsOverTimeChart"></canvas>
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="card p-4">
-              <div class="card-title">
-                <h3>Vos top postes:</h3>
+
+          <div class="col-4">
+            <div class="card p-4 shadow border-0">
+              <h3>Contactes & Vues.</h3>
+              <p class="mb-0">Totale de 125 vues</p>
+              <div class="card-body p-0 d-flex flex-column align-items-center" style="max-height: 300px;">
+                <canvas id="interractionsChart"></canvas>
               </div>
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Titre</th>
-                      <th>Date</th>
-                      <th>Prix</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>
-                </table>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="row">
+              <div class="col-12 mb-3">
+                <div class="card pt-2 shadow border-0">
+                  <h3 class="pt-2 px-3">Vues par Type.</h3>
+                  <div class="card-body">
+                    <canvas id="propertyStatesByView"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="card p-4 shadow border-0">
+                  <h3>Top Region.</h3>
+                  <div class="card-body p-1 pb-2">
+                    <h2 class="fw-bold">Oujda</h2>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="card shadow border-0 p-4">
+              <div class="card-body">
+                <h4 class="mb-3">Vos Meilleures Postes Du Mois :</h4>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Titre</th>
+                      <th>Addresse</th>
+                      <th>Prix</th>
+                      <th>Date</th>
+                      <th>Ville</th>
+                      <th>Categorie</th>
+                      <th>Type</th>
+                      <th>Detailes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Annonce 1</td>
+                      <td>hay al jadid nr 205</td>
+                      <td>3450</td>
+                      <td>2023-06-04 16:30:25</td>
+                      <td>Nador</td>
+                      <td>Appartement</td>
+                      <td>A louer</td>
+                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Annonce 1</td>
+                      <td>hay al jadid nr 205</td>
+                      <td>3450</td>
+                      <td>2023-06-04 16:30:25</td>
+                      <td>Nador</td>
+                      <td>Appartement</td>
+                      <td>A louer</td>
+                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Annonce 1</td>
+                      <td>hay al jadid nr 205</td>
+                      <td>3450</td>
+                      <td>2023-06-04 16:30:25</td>
+                      <td>Nador</td>
+                      <td>Appartement</td>
+                      <td>A louer</td>
+                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Annonce 1</td>
+                      <td>hay al jadid nr 205</td>
+                      <td>3450</td>
+                      <td>2023-06-04 16:30:25</td>
+                      <td>Nador</td>
+                      <td>Appartement</td>
+                      <td>A louer</td>
+                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Annonce 1</td>
+                      <td>hay al jadid nr 205</td>
+                      <td>3450</td>
+                      <td>2023-06-04 16:30:25</td>
+                      <td>Nador</td>
+                      <td>Appartement</td>
+                      <td>A louer</td>
+                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   </main>
@@ -198,25 +308,25 @@
         const { ctx, chartArea: { top, right, bottom, left, width, height }, scales: { x, y } } = chart;
         ctx.save();
 
-        ctx.strokeStyle = "gray";
+        ctx.strokeStyle = "rgb(0, 71, 110)";
         ctx.setLineDash([15, 50]);
         ctx.strokeRect(left, y.getPixelForValue(average), width, 0);
         ctx.restore();
       }
     }
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('viewsOverTimeChart');
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        labels: ['01 juin 23', '02 juin 23', '03 juin 23', '04 juin 23', '05 juin 23', '06 juin 23', '07 juin 23', '08 juin 23', '09 juin 23', '10 juin 23'],
         datasets: [{
-          label: 'Les Vues Totales',
+          label: 'Totale de Vues',
           data: [0, 9, 4, 12, 5, 7, 2, 17, 16, 0],
-          borderWidth: 3,
+          borderWidth: 2,
           tension: 0.3,
-          borderColor: "rgb(57,163,232)",
+          borderColor: "rgb(255, 153, 0)",
           backgroundColor: (context) => {
-            const bgColor = ["rgba(57,163,232,0.8)", "rgba(57,163,232,0.1)"];
+            const bgColor = ["rgba(255, 153, 0, 0.6 )", "rgba(255, 153, 0, 0.0)"];
             if (!context.chart.chartArea) {
               return
             }
@@ -238,6 +348,64 @@
       },
       plugins: [averageLine]
     });
+
+    new Chart(document.getElementById('interractionsChart'), {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Avec contacte',
+          'Sans contacte'
+        ],
+        datasets: [{
+          label: 'Nombre de fois',
+          data: [25, 100],
+          backgroundColor: [
+            'rgb(255, 153, 0)',
+            'rgb(0, 71, 110)',
+          ],
+          hoverOffset: 5
+        }]
+      }
+    })
+
+
+    new Chart(document.getElementById('propertyStatesByView'), {
+
+      type: 'bar',
+      data: {
+        labels: [
+          'Apparetemant',
+          'Villa',
+          'Boutique',
+          'Bureau',
+          'Terrain',
+        ],
+        datasets: [
+          {
+            label: "Contactes",
+            data: [20, 16, 38, 7, 18],
+            backgroundColor: [
+              'rgb(255, 153, 0)',
+              'rgb(255, 153, 0)',
+              'rgb(255, 153, 0)',
+              'rgb(255, 153, 0)',
+              'rgb(255, 153, 0)',
+            ],
+          }
+          , {
+            label: "Vues",
+            data: [25, 100, 42, 77, 18],
+            backgroundColor: [
+              'rgb(0, 71, 110)',
+              'rgb(0, 71, 110)',
+              'rgb(0, 71, 110)',
+              'rgb(0, 71, 110)',
+              'rgb(0, 71, 110)',
+            ],
+          }]
+      }
+    })
+
   </script>
 </body>
 
