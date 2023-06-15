@@ -1,3 +1,5 @@
+@import "variables";
+
 .map{
   &-container{
     background: #000;
@@ -37,6 +39,46 @@
     text-align: center;
     &::after{
       font-size: 1.5rem;
+    }
+  }
+}
+
+.page{
+  &-link{
+    padding: 0.4rem 0.8rem;
+    color: $primary-color; 
+  }
+  &-item{
+    &.active{
+      .page-link{
+        background-color: $secondary-color ; 
+        border-color: $secondary-color ; 
+      }
+    }
+  }
+}
+
+
+.form {
+  &-select {
+    border-width: 2px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $primary-color;
+    }
+    option:hover {
+      background-color: $secondary-color;
+    }
+  }
+  &-control{
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #c5c5c5;
+    
+    &:focus{
+      box-shadow: none;
+      border-color: $secondary-color;
     }
   }
 }
