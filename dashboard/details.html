@@ -15,7 +15,10 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../vendors/css/bootstrap.min.css">
   <link rel="stylesheet" href="../vendors/css/all.min.css">
+  <link rel="stylesheet" href="../vendors/css/leaflet.css">
+  <link rel="stylesheet" href="../vendors/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
+  <link rel="stylesheet" href="../assets/css/dashboard-pages.min.css">
   <title>3a9arlik | Tableau de bord</title>
 </head>
 
@@ -45,7 +48,7 @@
                 <ul class="nav collapse-nav">
                   <li class="collapse-item">
                     <a href="" class="collapse-link">
-                      Postes
+                      Detailes
                     </a>
                   </li>
                   <li class="collapse-item">
@@ -111,67 +114,14 @@
       </nav>
 
       <div class="container-fluid">
-        <div class="mb-4 pt-5 px-4 d-flex mt-3 align-items-start rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
-          <div class="me-auto">
-            <h2 class="poppins">👋 Bienvenu Mohammed Hakmi.</h2>
-            <p class="text-muted">Nous somme heureux de vous avoires ici avec nous, voici un aperçu des activites sur vos postes / annoces</p>
-          </div>
-  
-          <a class="text-primary text-decoration-none" href="../index.php">Aller au site publique <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
+          <h2 class="poppins">Detailes du poste.</h2>
+          <p class="text-muted">Voici les detailes et statistiques du postes</p>
         </div>
+
+        <h2 class="poppins mb-3"><i class="fa-solid fa-chart-line me-3"></i>Statistiques.</h2>
         <div class="row mb-5">
-          <div class="col-3">
-            <div class="card bg-custom shadow border-0 card-mini">
-              <div class="card-body">
-                <h3 class="poppins">
-                  <i class="fa-solid fa-location-dot me-2"></i>
-                  Totale de Locaux
-                </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">25</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="card bg-custom shadow border-0 card-mini">
-              <div class="card-body">
-                <h3 class="poppins">
-                  <i class="fa-solid fa-eye me-2"></i>
-                  Totale des Vues
-                </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">5829</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="card bg-custom shadow border-0 card-mini">
-              <div class="card-body">
-                <h3 class="poppins">
-                  <i class="fa-solid fa-chart-bar me-2"></i>
-                  Votre Rank
-                </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">189</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="card bg-custom shadow border-0 card-mini">
-              <div class="card-body">
-                <h3 class="poppins">
-                  <i class="fa-solid fa-inbox me-2"></i>
-                  Inbox
-                </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">50</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h1 class="poppins mb-3"><i class="fa-solid fa-chart-line me-3"></i> Statistiques.</h1>
-        <div class="row mb-4"> 
-          <div class="col-5">
+          <div class="col-6">
             <div class="card h-100 p-4 shadow border-0">
               <h3 class="mb-2">L'activiter sur vos postes.</h3>
               <p class="mb-3">Durans le dernier mois</p>
@@ -181,7 +131,7 @@
             </div>
           </div>
 
-          <div class="col-4">
+          <div class="col-6">
             <div class="card h-100 p-4 shadow border-0">
               <h3 class="mb-2">Contactes & Vues.</h3>
               <p class="mb-3">Totale de 125 vues</p>
@@ -190,111 +140,103 @@
               </div>
             </div>
           </div>
-
-          <div class="col-3">
-            <div class="row h-100">
-              <div class="col-12 mb-3">
-                <div class="card h-100 pt-2 shadow border-0">
-                  <h3 class="pt-2 px-3">Vues par Type.</h3>
-                  <div class="card-body">
-                    <canvas id="propertyStatesByView"></canvas>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="card h-100 p-4 shadow bg-primary text-white border-0">
-                  <h3><i class="fa-solid fa-star me-2"></i> Top Region.</h3>
-                  <div class="card-body p-1 pb-2">
-                    <h2 class="fw-bold">Oujda</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <div class="row mt-3">
+        <h2 class="poppins mb-3"><i class="fa-solid fa-circle-info me-3"></i> Detailes du poste.</h2>
+        <div class="row">
           <div class="col-12">
-            <div class="card shadow border-0 p-4">
+            <div class="card p-4 shadow border-0">
+              <div class="d-flex align-items-start border-bottom">
+                <h2 class="poppins mb-3">Contenue du poste.</h2>
+                <div class="ms-auto d-flex align-items-center">
+                  <a href="#" class="btn btn-info me-2"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                  <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Suprimer</a>
+                </div>
+              </div>
               <div class="card-body">
-                <h4 class="mb-3"><i class="fa-solid fa-arrow-trend-up"></i> Vos Meilleures Postes Du Mois :</h4>
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Titre</th>
-                      <th>Addresse</th>
-                      <th>Prix</th>
-                      <th>Date</th>
-                      <th>Ville</th>
-                      <th>Categorie</th>
-                      <th>Type</th>
-                      <th>Detailes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Annonce 1</td>
-                      <td>hay al jadid nr 205</td>
-                      <td>3450</td>
-                      <td>2023-06-04 16:30:25</td>
-                      <td>Nador</td>
-                      <td>Appartement</td>
-                      <td>A louer</td>
-                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Annonce 1</td>
-                      <td>hay al jadid nr 205</td>
-                      <td>3450</td>
-                      <td>2023-06-04 16:30:25</td>
-                      <td>Nador</td>
-                      <td>Appartement</td>
-                      <td>A louer</td>
-                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Annonce 1</td>
-                      <td>hay al jadid nr 205</td>
-                      <td>3450</td>
-                      <td>2023-06-04 16:30:25</td>
-                      <td>Nador</td>
-                      <td>Appartement</td>
-                      <td>A louer</td>
-                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Annonce 1</td>
-                      <td>hay al jadid nr 205</td>
-                      <td>3450</td>
-                      <td>2023-06-04 16:30:25</td>
-                      <td>Nador</td>
-                      <td>Appartement</td>
-                      <td>A louer</td>
-                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Annonce 1</td>
-                      <td>hay al jadid nr 205</td>
-                      <td>3450</td>
-                      <td>2023-06-04 16:30:25</td>
-                      <td>Nador</td>
-                      <td>Appartement</td>
-                      <td>A louer</td>
-                      <td><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-                    </tr>
-                  </tbody>
+                
+                <table class="mb-3">
+                  <tr>
+                    <td><strong>Status du poste</strong></td>
+                    <td>
+                      <span class="badge bg-success">
+                        <i class="fa-solid fa-check"></i> actif
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="min-width: 180px;"><strong>Titre</strong></td>
+                    <td>Annonce 1 du site</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Prix</strong></td>
+                    <td>750000 DH</td>
+                  </tr>
+                  <tr>
+                    <td class="d-block"><strong>Description</strong> </td>
+                    <td>
+                      <small>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores odit perspiciatis in obcaecati vitae id voluptatum, labore assumenda voluptates amet quas suscipit accusamus officia nesciunt ratione sed modi nobis corrupti eius provident laboriosam rem, repellat fugit? Dicta amet fugit maxime atque soluta consequatur error. Aperiam magnam expedita excepturi sed, vel deleniti dolor at. Debitis autem officiis explicabo ipsa, quia rem tempore dignissimos, voluptates libero earum, mollitia aspernatur veritatis. Error id at nostrum molestiae deserunt amet sit dignissimos, quis nemo est, sequi exercitationem voluptatem vitae distinctio alias. Porro natus amet a rerum molestiae, iusto animi dolorem, voluptatem commodi aperiam similique accusamus rem mollitia suscipit at doloremque veniam ea sit labore! Autem reiciendis placeat.
+                      </small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Addresse</strong></td>
+                    <td>Nador kournich, Immeuble Nouveau class, Apparetemant 4</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ville</strong></td>
+                    <td>Nador</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Categorie</strong></td>
+                    <td>Apparetemant</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Type d'annonce</strong></td>
+                    <td>A acheter</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ajouter le</strong></td>
+                    <td>23/05/2023</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nombre de vues</strong></td>
+                    <td>23</td>
+                  </tr>
                 </table>
+                
+
+                <!---------------------------------------------------------------------------------------------------------->
+                <p><strong>Location</strong> :</p>
+                <div class="map-container mb-4">
+                  <div class="map-wrapper">
+                    <div data-addresse="some dummy data" id="map" data-map="[35.149073608580714,-2.9118919372558594]">
+                    </div>
+                  </div>
+                </div>
+                <p><strong>Images</strong> :</p>
+                <div class="swiper-container">
+                  <div class="swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <img src="../uploads/BAl_K5-FIniMUYmL9wygW4D71eTjRp3EXcqao6JxChzVd2ktuHSvGs08PrNfZbOQkenny-eliason-kdwahpWYfQo-unsplash.jpg" alt=""/>
+                      </div>
+                      <div class="swiper-slide">
+                        <img src="../uploads/eijLvwX8sQH1B9EzTWZOJUtpk7aP2SxdcRqVNhAfo3M4CbYyumGn60-rgl5FDK_Ipatrick-perkins-3wylDrjxH-E-unsplash.jpg" alt=""/>
+                      </div>
+                      <div class="swiper-slide">
+                        <img src="../uploads/xa5YQl-FVCmfR_ckZbtDJMr7pvHu1Nd2OKWAzn8Ew4yXLPGjIsiqeSg3oBhU69T0outsite-co-R-LK3sqLiBw-unsplash.jpg" alt=""/>
+                      </div>
+                    </div>
+
+                    <div class="swiper-button-prev custom-btn" style="left: 0.4rem"></div>
+                    <div class="swiper-button-next custom-btn" style="right: 0.4rem"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -303,6 +245,8 @@
   <script src="../vendors/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/js/feather.min.js"></script>
   <script src="../vendors/js/chart.umd.js"></script>
+  <script src="../vendors/js/leaflet.js"></script>
+  <script src="../vendors/js/swiper-bundle.min.js"></script>
   <script>
     feather.replace();
     let average = 0;
@@ -379,44 +323,31 @@
       }
     })
 
+  </script>
+  <script>
+    var mapContainer = document.getElementById("map");
+    var map = L.map('map').setView(JSON.parse(mapContainer.getAttribute("data-map")), 13);
 
-    new Chart(document.getElementById('propertyStatesByView'), {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-      type: 'bar',
-      data: {
-        labels: [
-          'Apparetemant',
-          'Villa',
-          'Boutique',
-          'Bureau',
-          'Terrain',
-        ],
-        datasets: [
-          {
-            label: "Contactes",
-            data: [20, 16, 38, 7, 18],
-            backgroundColor: [
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-              'rgb(255, 153, 0)',
-            ],
-          }
-          , {
-            label: "Vues",
-            data: [25, 100, 42, 77, 18],
-            backgroundColor: [
-              'rgb(0, 71, 110)',
-              'rgb(0, 71, 110)',
-              'rgb(0, 71, 110)',
-              'rgb(0, 71, 110)',
-              'rgb(0, 71, 110)',
-            ],
-          }]
-      }
-    })
+    var marker = L.marker(JSON.parse(mapContainer.getAttribute("data-map"))).addTo(map);
+    marker.bindPopup(mapContainer.getAttribute("data-addresse")).openPopup();
 
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
   </script>
 </body>
 
