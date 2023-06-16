@@ -32,95 +32,10 @@
 
 <body>
   <main>
-    <aside class="sidebar" style="border-right: solid 1px #dedede">
-      <div class="sidebar-inner">
-        <div class="py-1 px-2">
-          <a href="">
-            <img src="../assets/images/logo.png" alt="3a9arlik logo" class="logo">
-          </a>
-        </div>
-        <div class="mt-1 pt-1 sidebar-nav-container d-flex flex-column">
-          <ul class="nav sidebar-nav">
-            <li class="sidebar-item">
-              <a class="sidebar-link active" href="#">
-                <i class="fa-solid fa-chart-pie me-2"></i> Tableau de bord
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link d-flex align-items-center" data-bs-toggle="collapse" href="#postCRUD" role="button"
-                aria-expanded="false" aria-controls="postCRUD">
-                <i class="fa-solid fa-bullhorn me-2"></i> Vos Postes
-                <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 1rem;"></i>
-              </a>
-              <div class="collapse show" id="postCRUD">
-                <ul class="nav collapse-nav">
-                  <li class="collapse-item">
-                    <a href="" class="collapse-link">
-                      Postes
-                    </a>
-                  </li>
-                  <li class="collapse-item">
-                    <a href="" class="collapse-link">
-                      Ajouter un poste
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-item"><a class="sidebar-link" href="#">
-                <i class="fa-solid fa-user me-2"></i> Profile</a>
-            </li>
-            <li class="sidebar-item"><a class="sidebar-link" href="#">
-                <i class="fa-solid fa-gear me-2"></i> Paramètres</a>
-            </li>
-          </ul>
-          <div class="sidebar-item mt-auto mb-2"><a class="sidebar-link" href="#">
-              <i class="fa-solid fa-right-from-bracket me-2"></i> Se deconnecter</a>
-          </div>
-        </div>
-      </div>
-    </aside>
+    <?php include("includes/sidebar.php")?>
     <section class="main">
-      <nav class="navbar navbar-expand-lg bg-white border-bottom">
-        <div class="container-fluid py-2">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-              <li class="nav-item dropdown pt-2 me-4">
-                <a class="nav-link dropdown-toggle position-relative" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i style="width: 30px; height: 40px;" data-feather="mail"></i>
-                  <span class="red-dot"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end mt-2">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <i class="nav-icon" data-feather="user"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end mt-2">
-                  <li class="px-4 py-2 d-flex flex-column text-center">
-                    <p class="mb-0 user-name">Mohammed Hakmi</p>
-                    <span class="text-muted user-email" style="font-size: 0.9rem;">example@email.com</span>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
+      <?php include("includes/navbar.php")?>
+      
       <div class="container-fluid">
         <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <h2 class="poppins">📃 Votre profile.</h2>
