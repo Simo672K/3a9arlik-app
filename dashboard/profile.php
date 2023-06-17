@@ -1,3 +1,6 @@
+<?php 
+  require_once('includes/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +38,7 @@
     <?php include("includes/sidebar.php")?>
     <section class="main">
       <?php include("includes/navbar.php")?>
-      
+
       <div class="container-fluid">
         <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <h2 class="poppins">📃 Votre profile.</h2>

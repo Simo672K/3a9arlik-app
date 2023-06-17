@@ -65,9 +65,9 @@
 </head>
 <body>
   <div class="container">
-    <div class="alert alert-success position-absolute top-2" style="z-index: 50">
+    <!-- <div class="alert alert-success position-absolute top-2" style="z-index: 50">
       Votre compte a été creer avec succée!
-    </div>
+    </div> -->
     <div class="card shadow" style="overflow: hidden;">
       <div class="card-body p-0" style="overflow: hidden;">
         <div class="row p-0">
@@ -97,7 +97,7 @@
               </div>
               <button class="btn cta-btn" type="submit" name="submit">Enregistrer</button>
             </form>
-            <p class="text-center text-muted mt-2 mb-0">Vous avez déja un compte? <a href="" style="color: var(--secondary-color);">Connectez maintenant.</a></p>
+            <p class="text-center text-muted mt-2 mb-0">Vous avez déja un compte? <a href="login.php" style="color: var(--secondary-color);">Connectez maintenant.</a></p>
             <hr class="mt-2">
             <div class="d-flex justify-content-center">
               <a href="index.php">

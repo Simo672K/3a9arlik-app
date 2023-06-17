@@ -13,7 +13,7 @@
       $_SESSION["user_phone"]= User::$phone;
       $_SESSION["user_logged"]= User::$logged_in;
 
-      header("Location: index.php");
+      header("Location: dashboard/");
     }
   }
 ?>
@@ -80,7 +80,7 @@
   
               <button class="btn cta-btn" type="submit" name="submit">Se Connecter</button>
             </form>
-            <p class="text-center text-muted mt-2 mb-0">Vous n'avez pas de compte? <a href="" style="color: var(--secondary-color);">Créez un maintenant.</a></p>
+            <p class="text-center text-muted mt-2 mb-0">Vous n'avez pas de compte? <a href="register.php" style="color: var(--secondary-color);">Créez un maintenant.</a></p>
             <hr class="mt-2">
             <div class="d-flex justify-content-center">
               <a href="index.php">

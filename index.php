@@ -73,10 +73,10 @@
     <section class="my-5 py-5">
       <div class="container mt-5 pt-5">
         <div class="row">
-          <div class="col-md-6" data-aos="fade-right" data-aos-offset="300">
+          <div class="col-md-6" data-aos="fade-right">
             <img class="img-fluid curved-img" src="assets/images/apropos-img.jpg" alt="A-propos-de-nous-image">
           </div>
-          <div class="col-md-6 d-flex flex-column ps-4" data-aos="fade-up" data-aos-offset="300">
+          <div class="col-md-6 d-flex flex-column ps-4" data-aos="fade-up">
             <h2 class="poppins display-5 fw-bold mb-3 mt-2">A propos de nous</h2>
             <p class="section-text">
               <strong style="border-bottom: dotted 2px var(--secondary-color);">3a9arLik</strong> est la plateforme idéale pour trouver et acheter des biens immobiliers dans votre région. Avec notre sélection variée de propriétés et notre équipe dédiée, nous simplifions le processus de recherche et d'achat. Rejoignez-nous dès maintenant et trouvez la maison de vos rêves en quelques clics.

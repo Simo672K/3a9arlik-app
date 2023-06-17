@@ -50,7 +50,10 @@
             <a class="nav-link btn cta-btn" href="register.php">S'inscrire</a>
           </li>
           <?php }else{?>
-          <li class="nav-item ms">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard/">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="logout.php">Déconnecter (<?php echo $_SESSION["user_name"];?>)</a>
           </li>
           <li class="nav-item ms-auto">
