@@ -37,6 +37,13 @@
         <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <h2 class="poppins">Detailes du poste.</h2>
           <p class="text-muted">Voici les detailes et statistiques du postes</p>
+          <nav class="p-2 mb-3 rounded " aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
+              <li class="breadcrumb-item"><a href="all-posts.php">Postes</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Anonce 1</li>
+            </ol>
+          </nav>
         </div>
 
         <h2 class="poppins mb-3"><i class="fa-solid fa-chart-line me-3"></i>Statistiques.</h2>
