@@ -8,12 +8,12 @@
     <div class="mt-1 pt-1 sidebar-nav-container d-flex flex-column">
       <ul class="nav sidebar-nav">
         <li class="sidebar-item">
-          <a class="sidebar-link active" href="index.php">
+          <a class="sidebar-link <?php echo $page_title == "Dashboard"? "active": "" ?>" href="index.php">
             <i class="fa-solid fa-chart-pie me-2"></i> Tableau de bord
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link d-flex align-items-center" data-bs-toggle="collapse" href="#postCRUD" role="button"
+          <a class="sidebar-link d-flex align-items-center <?php echo $page_title == "Postes"? "active": "" ?>" data-bs-toggle="collapse" href="#postCRUD" role="button"
             aria-expanded="false" aria-controls="postCRUD">
             <i class="fa-solid fa-bullhorn me-2"></i> Vos Postes
             <i class="fa-solid fa-chevron-down ms-auto" style="font-size: 1rem;"></i>
@@ -33,14 +33,14 @@
             </ul>
           </div>
         </li>
-        <li class="sidebar-item"><a class="sidebar-link" href="profile.php">
+        <li class="sidebar-item"><a class="sidebar-link <?php echo $page_title == "Profile"? "active": "" ?>" href="profile.php">
             <i class="fa-solid fa-user me-2"></i> Profile</a>
         </li>
-        <li class="sidebar-item"><a class="sidebar-link" href="#">
+        <li class="sidebar-item"><a class="sidebar-link <?php echo $page_title == ""? "active": "" ?>" href="#">
             <i class="fa-solid fa-gear me-2"></i> Paramètres</a>
         </li>
       </ul>
-      <div class="sidebar-item mt-auto mb-2"><a class="sidebar-link" href="../logout.php">
+      <div class="sidebar-item mt-auto mb-2"><a class="sidebar-link <?php echo $page_title == ""? "active": "" ?>" href="../logout.php">
           <i class="fa-solid fa-right-from-bracket me-2"></i> Se deconnecter</a>
       </div>
     </div>

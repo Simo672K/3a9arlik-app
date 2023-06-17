@@ -1,5 +1,10 @@
 <?php 
   require_once('includes/session.php');
+  require_once('core/classes.php');
+  $page_title= "Profile";
+  UserData::get_user_info($_SESSION["user_id"]);
+
+  $user= UserData::$result->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +25,7 @@
   <link rel="stylesheet" href="../vendors/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard-pages.min.css">
-  <title>3a9arlik | Tableau de bord</title>
+  <title>3a9arlik | <?php echo $page_title?></title>
   <style>
     .avatar {
       width: 120px;
@@ -43,6 +48,13 @@
         <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <h2 class="poppins">📃 Votre profile.</h2>
           <p class="text-muted">Votre profile et vos donnees.</p>
+
+          <nav class="p-2 mb-3 rounded " aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
+              <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+          </nav>
         </div>
 
 
@@ -50,11 +62,11 @@
           <div class="d-flex align-items-center border-bottom pb-3">
             <h2 class="me-auto"><i class="fa-solid fa-clipboard-user"></i> Vos donnees.</h2>
             <div>
-              <a class="btn btn-primary" href="">
+              <a class="btn btn-primary" href="change-password.php?user_id=<?php echo $user["user_id"]?>">
                 <i class="fa-solid fa-key me-2"></i> 
                 Changer mot de passe
               </a>
-              <a class="btn btn-secondary" href="">
+              <a class="btn btn-secondary" href="update-user.php?user_id=<?php echo $user["user_id"]?>">
                 <i class="fa-solid fa-pen-to-square me-2"></i>
                 Modifier vos donnees
               </a>
@@ -67,7 +79,7 @@
                   <div class="avatar">
                     <img src="../assets/images/avatar.png" alt="avatar">
                   </div>
-                  <h5 class="mt-2">Mohammed Hakmi</h5>
+                  <h5 class="mt-2"><?php echo $user["user_name"]?></h5>
                 </div>
 
               </div>
@@ -75,24 +87,24 @@
                 <table>
                   <tr>
                     <td class="pt-2"><strong><i class="fa-solid fa-user"></i> Nom utilisateur</strong> :</td>
-                    <td class="ps-3">Mohammed Hakmi</td>
+                    <td class="ps-3"><?php echo $user["user_name"]?></td>
                   </tr>
                   <tr>
                     <td class="pt-2"><strong><i class="fa-solid fa-envelope"></i> Addresse email</strong> :</td>
-                    <td class="ps-3">mohammed.hakmi@gmail.com</td>
+                    <td class="ps-3"><?php echo $user["user_email"]?></td>
                   </tr>
                   <tr>
                     <td class="pt-2"><strong><i class="fa-solid fa-phone"></i> Numero de telephone</strong> :</td>
-                    <td class="ps-3">0612345678</td>
+                    <td class="ps-3"><?php echo $user["user_phone"]?></td>
                   </tr>
                   <tr>
                     <td class="pt-2"><strong><i class="fa-solid fa-calendar"></i> Rejoint le</strong> :</td>
-                    <td class="ps-3">2023-06-04</td>
+                    <td class="ps-3"><?php echo $user["user_added"]?></td>
                   </tr>
                 </table>
                 <div class="mt-4">
                   <h4 class="text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i> Zone danger</h4>
-                  <a class="btn btn-danger" href="">
+                  <a class="btn btn-danger" href="delete-account?user_id=<?php echo $user["user_id"]?>">
                     <i class="fa-solid fa-user-slash me-2"></i> 
                     Suprimer votre compte
                   </a>

@@ -1,8 +1,10 @@
 <?php 
   require_once('includes/session.php');
   require_once('core/classes.php');
+  $page_title= "Dashboard";
 
-  UserData::overview($_SESSION["user_logged"]);
+  UserData::get_overview_data($_SESSION["user_id"]);
+  $overview_result= UserData::$result->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +24,7 @@
   <link rel="stylesheet" href="../vendors/css/bootstrap.min.css">
   <link rel="stylesheet" href="../vendors/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
-  <title>3a9arlik | Tableau de bord</title>
+  <title>3a9arlik | <?php echo $page_title?></title>
 </head>
 
 <body>
@@ -34,7 +36,7 @@
       <div class="container-fluid">
         <div class="mb-4 pt-5 px-4 d-flex mt-3 align-items-start rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <div class="me-auto">
-            <h2 class="poppins">👋 Bienvenu Mohammed Hakmi.</h2>
+            <h2 class="poppins">👋 Bienvenu <?php echo $_SESSION["user_name"]?>.</h2>
             <p class="text-muted">Nous somme heureux de vous avoires ici avec nous, voici un aperçu des activites sur vos postes / annoces</p>
           </div>
   
@@ -48,7 +50,7 @@
                   <i class="fa-solid fa-location-dot me-2"></i>
                   Totale de Postes
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">25</h5>
+                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["nmbr_posts"]?></h5>
               </div>
             </div>
           </div>
@@ -60,7 +62,7 @@
                   <i class="fa-solid fa-eye me-2"></i>
                   Totale des Vues
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">5829</h5>
+                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["views"]?></h5>
               </div>
             </div>
           </div>
@@ -72,7 +74,7 @@
                   <i class="fa-solid fa-chart-bar me-2"></i>
                   Votre Rank
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">189</h5>
+                <h5 class="display-5 poppins fw-bold ps-2">2</h5>
               </div>
             </div>
           </div>

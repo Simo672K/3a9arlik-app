@@ -12,10 +12,10 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="nav-icon" data-feather="user"></i>
           </a>
-          <ul class="dropdown-menu dropdown-menu-end mt-2">
+          <ul class="dropdown-menu dropdown-menu-end mt-3">
             <li class="px-4 py-2 d-flex flex-column text-center">
-              <p class="mb-0 user-name">Mohammed Hakmi</p>
-              <span class="text-muted user-email" style="font-size: 0.9rem;">example@email.com</span>
+              <p class="mb-0 user-name"><?php echo $_SESSION["user_name"]?></p>
+              <span class="text-muted user-email" style="font-size: 0.9rem;"><?php echo $_SESSION["user_email"]?></span>
             </li>
             <li>
               <hr class="dropdown-divider">

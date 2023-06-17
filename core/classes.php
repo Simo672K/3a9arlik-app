@@ -84,6 +84,16 @@ class Post{
     DBhandler::$conn->query("UPDATE post SET post_views=post_views+1 WHERE post_id=$id");
   }
 
+  public static function get_detailed_post($id) {
+    Post::$result= DBhandler::get_result("SELECT post_id, post_title, post_addresse, post_description, post_images, post_coordinates, post_price, post_views, post_added, post_type, city_name as post_city, category_name as post_category  FROM " 
+    . POST_TABLE . " INNER JOIN city on post.post_city_id=city.city_id INNER JOIN category on post.post_category_id=category.category_id WHERE post_id=$id");
+  }
+
+  public static function get_user_posts($user_id) {
+    Post::$result= DBhandler::get_result("SELECT post_id, post_title, post_addresse, post_price, post_views, post_added, post_type, city_name as post_city, category_name as post_category  FROM " 
+    . POST_TABLE . " INNER JOIN city on post.post_city_id=city.city_id INNER JOIN category on post.post_category_id=category.category_id WHERE post_user_id=$user_id ORDER BY post_added DESC");
+  }
+
   // for filtring and search
   public static function filter_posts($city, $category, $type){
     $query= "SELECT post_id, post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name 

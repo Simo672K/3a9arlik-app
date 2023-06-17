@@ -1,5 +1,14 @@
 <?php 
   require_once('includes/session.php');
+  require_once("../core/classes.php");
+  $page_title= "Postes";
+
+  if(isset($_GET["post_id"])){
+    Post::get_detailed_post($_GET["post_id"]);
+    $row= Post::$result->fetch(PDO::FETCH_ASSOC);
+  }else{
+    header("Location:all-posts.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +31,12 @@
   <link rel="stylesheet" href="../vendors/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard-pages.min.css">
-  <title>3a9arlik | Tableau de bord</title>
+  <title>3a9arlik | <?php echo $page_title?></title>
 </head>
 
 <body>
   <main>
     <?php include("includes/sidebar.php")?>
-    
     <section class="main">
       <?php include("includes/navbar.php")?>
       
@@ -41,7 +49,7 @@
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
               <li class="breadcrumb-item"><a href="all-posts.php">Postes</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Anonce 1</li>
+              <li class="breadcrumb-item active" aria-current="page"><?php echo $row["post_title"]?></li>
             </ol>
           </nav>
         </div>
@@ -87,21 +95,9 @@
                     <div class="swiper-container" style="width: 650px;">
                       <div class="swiper">
                         <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <img
-                              src="../uploads/BAl_K5-FIniMUYmL9wygW4D71eTjRp3EXcqao6JxChzVd2ktuHSvGs08PrNfZbOQkenny-eliason-kdwahpWYfQo-unsplash.jpg"
-                              alt="" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img
-                              src="../uploads/eijLvwX8sQH1B9EzTWZOJUtpk7aP2SxdcRqVNhAfo3M4CbYyumGn60-rgl5FDK_Ipatrick-perkins-3wylDrjxH-E-unsplash.jpg"
-                              alt="" />
-                          </div>
-                          <div class="swiper-slide">
-                            <img
-                              src="../uploads/xa5YQl-FVCmfR_ckZbtDJMr7pvHu1Nd2OKWAzn8Ew4yXLPGjIsiqeSg3oBhU69T0outsite-co-R-LK3sqLiBw-unsplash.jpg"
-                              alt="" />
-                          </div>
+                        <?php foreach(json_decode($row["post_images"]) as $image){?>
+                          <div class="swiper-slide"><img src="<?php echo "../".UPLOAD_DIR . $image?>" alt="<?php echo $image;?>"/></div>
+                        <?php }?>
                         </div>
 
                         <div class="swiper-button-prev custom-btn" style="left: 0.4rem"></div>
@@ -121,52 +117,43 @@
                       </tr>
                       <tr>
                         <td style="min-width: 180px;"><strong>Titre</strong></td>
-                        <td>Annonce 1 du site</td>
+                        <td><?php echo $row["post_title"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Prix</strong></td>
-                        <td>750000 DH</td>
+                        <td><?php echo $row["post_price"]?> DH</td>
                       </tr>
                       <tr>
                         <td class="d-block"><strong>Description</strong> </td>
                         <td>
                           <small>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores odit perspiciatis in
-                            obcaecati vitae id voluptatum, labore assumenda voluptates amet quas suscipit accusamus
-                            officia nesciunt ratione sed modi nobis corrupti eius provident laboriosam rem, repellat
-                            fugit? Dicta amet fugit maxime atque soluta consequatur error. Aperiam magnam expedita
-                            excepturi sed, vel deleniti dolor at. Debitis autem officiis explicabo ipsa, quia rem
-                            tempore dignissimos, voluptates libero earum, mollitia aspernatur veritatis. Error id at
-                            nostrum molestiae deserunt amet sit dignissimos, quis nemo est, sequi exercitationem
-                            voluptatem vitae distinctio alias. Porro natus amet a rerum molestiae, iusto animi dolorem,
-                            voluptatem commodi aperiam similique accusamus rem mollitia suscipit at doloremque veniam ea
-                            sit labore! Autem reiciendis placeat.
+                          <?php echo $row["post_description"]?>
                           </small>
                         </td>
                       </tr>
                       <tr>
                         <td><strong>Addresse</strong></td>
-                        <td>Nador kournich, Immeuble Nouveau class, Apparetemant 4</td>
+                        <td><?php echo $row["post_addresse"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Ville</strong></td>
-                        <td>Nador</td>
+                        <td><?php echo $row["post_city"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Categorie</strong></td>
-                        <td>Apparetemant</td>
+                        <td><?php echo $row["post_category"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Type d'annonce</strong></td>
-                        <td>A acheter</td>
+                        <td>À <?php echo $row["post_type"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Ajouter le</strong></td>
-                        <td>23/05/2023</td>
+                        <td><?php echo $row["post_added"]?></td>
                       </tr>
                       <tr>
                         <td><strong>Nombre de vues</strong></td>
-                        <td>23</td>
+                        <td><?php echo $row["post_views"]?></td>
                       </tr>
                     </table>
                   </div>
@@ -177,7 +164,7 @@
                 <p><strong>Location</strong> :</p>
                 <div class="map-container mb-4">
                   <div class="map-wrapper">
-                    <div data-addresse="some dummy data" id="map" data-map="[35.149073608580714,-2.9118919372558594]">
+                    <div data-addresse="<?php echo $row["post_addresse"]?>" id="map" data-map="<?php echo $row["post_coordinates"]?>">
                     </div>
                   </div>
                 </div>

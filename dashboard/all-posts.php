@@ -1,5 +1,9 @@
 <?php 
   require_once('includes/session.php');
+  require_once('../core/classes.php');
+  $page_title= "Postes";
+
+  Post::get_user_posts($_SESSION["user_id"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +24,7 @@
   <link rel="stylesheet" href="../vendors/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard-pages.min.css">
-  <title>3a9arlik | Tableau de bord</title>
+  <title>3a9arlik | <?php echo $page_title?></title>
 </head>
 
 <body>
@@ -39,7 +43,7 @@
         <div class="card shadow-sm border-0 p-4">
           <div class="card-body">
             <div class="border-bottom mb-4">
-              <h4 class="mb-3"><i class="fa-solid fa-list-ul"></i> Tous les postes (18)</h4>
+              <h4 class="mb-3"><i class="fa-solid fa-list-ul"></i> Tous les postes (<?php echo Post::$result->rowCount() ?>)</h4>
             </div>
             <div class="mb-4 mt-4">
               <h5 class="mb-2"><i class="fa-solid fa-search me-1"></i> Rechercher un poste:</h5>
@@ -56,6 +60,7 @@
                   <th class="pt-3">Titre</th>
                   <th>Addresse</th>
                   <th>Prix</th>
+                  <th>Vues</th>
                   <th>Date</th>
                   <th>Ville</th>
                   <th>Categorie</th>
@@ -65,16 +70,18 @@
                 </tr>
               </thead>
               <tbody>
+                <?php foreach(Post::$result as $key=>$value) {?>
                 <tr>
-                  <td class="py-3">Annonce 1</td>
-                  <td class="py-3">hay al jadid nr 205</td>
-                  <td class="py-3">3450</td>
-                  <td class="py-3">2023-06-04 16:30:25</td>
-                  <td class="py-3">Nador</td>
-                  <td class="py-3">Appartement</td>
-                  <td class="py-3">A louer</td>
+                  <td class="py-3"><?php echo $value["post_title"]?></td>
+                  <td class="py-3"><?php echo $value["post_addresse"]?></td>
+                  <td class="py-3"><?php echo $value["post_price"]?></td>
+                  <td class="py-3"><?php echo $value["post_views"]?></td>
+                  <td class="py-3"><?php echo $value["post_added"]?></td>
+                  <td class="py-3"><?php echo $value["post_city"]?></td>
+                  <td class="py-3"><?php echo $value["post_category"]?></td>
+                  <td class="py-3">À <?php echo $value["post_type"]?></td>
                   <td class="py-3">
-                    <a href="#" class="text-decoration-none">detailes <i
+                    <a href="details.php?post_id=<?php echo $value["post_id"]?>" class="text-decoration-none">detailes <i
                         class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
                   </td>
                   <td class="py-3">
@@ -82,78 +89,7 @@
                     <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
                   </td>
                 </tr>
-
-                <tr>
-                  <td class="py-3">Annonce 1</td>
-                  <td class="py-3">hay al jadid nr 205</td>
-                  <td class="py-3">3450</td>
-                  <td class="py-3">2023-06-04 16:30:25</td>
-                  <td class="py-3">Nador</td>
-                  <td class="py-3">Appartement</td>
-                  <td class="py-3">A louer</td>
-                  <td class="py-3">
-                    <a href="#" class="text-decoration-none">detailes <i
-                        class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
-                  </td>
-                  <td class="py-3">
-                    <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="py-3">Annonce 1</td>
-                  <td class="py-3">hay al jadid nr 205</td>
-                  <td class="py-3">3450</td>
-                  <td class="py-3">2023-06-04 16:30:25</td>
-                  <td class="py-3">Nador</td>
-                  <td class="py-3">Appartement</td>
-                  <td class="py-3">A louer</td>
-                  <td class="py-3">
-                    <a href="#" class="text-decoration-none">detailes <i
-                        class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
-                  </td>
-                  <td class="py-3">
-                    <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="py-3">Annonce 1</td>
-                  <td class="py-3">hay al jadid nr 205</td>
-                  <td class="py-3">3450</td>
-                  <td class="py-3">2023-06-04 16:30:25</td>
-                  <td class="py-3">Nador</td>
-                  <td class="py-3">Appartement</td>
-                  <td class="py-3">A louer</td>
-                  <td class="py-3">
-                    <a href="#" class="text-decoration-none">detailes <i
-                        class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
-                  </td>
-                  <td class="py-3">
-                    <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="py-3">Annonce 1</td>
-                  <td class="py-3">hay al jadid nr 205</td>
-                  <td class="py-3">3450</td>
-                  <td class="py-3">2023-06-04 16:30:25</td>
-                  <td class="py-3">Nador</td>
-                  <td class="py-3">Appartement</td>
-                  <td class="py-3">A louer</td>
-                  <td class="py-3">
-                    <a href="#" class="text-decoration-none">detailes <i
-                        class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
-                  </td>
-                  <td class="py-3">
-                    <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
-                  </td>
-                </tr>
+                <?php }?>
               </tbody>
             </table>
             <nav aria-label="...">

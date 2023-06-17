@@ -1,4 +1,5 @@
 @import "variables";
+@import "alerts"; 
 
 .poppins {
   font-family: 'Poppins', sans-serif;
@@ -137,5 +138,22 @@ main {
   &-mini{
     color: #fff;
     border-bottom: solid 10px $primary-color !important;
+  }
+}
+
+.dropdown{
+  &-menu{
+    &::after{
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      background: #fff;
+      top: -0.51rem;
+      right: 1.3rem;
+      transform: rotate(45deg);
+      border-left: solid 1px #adb5bd;
+      border-top: solid 1px #adb5bd;
+    }
   }
 }

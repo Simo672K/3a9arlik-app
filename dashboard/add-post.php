@@ -1,5 +1,54 @@
 <?php 
   require_once('includes/session.php');
+  require_once("../core/classes.php");
+  $page_title= "Postes";
+  $show_alert= false;
+
+  
+  if(isset($_POST["submit"]) && $_SESSION["user_logged"]){
+    $file_count = count($_FILES["post_images"]["name"]);
+    $images= array();
+    for($i=0; $i<$file_count; $i++) {
+      $file_name = $_FILES['post_images']['name'][$i];
+      $file_type = $_FILES['post_images']['type'][$i];
+      $file_tmp_name = $_FILES['post_images']['tmp_name'][$i];
+      $file_error = $_FILES['post_images']['error'][$i];
+      
+      // Validate the file (add your own validation rules)
+      if ($file_error === UPLOAD_ERR_OK) {
+        // Generate a unique filename
+        $unique_file_name = generate_filename($file_name);
+        
+        // if (!file_exists(UPLOAD_DIR)) {
+        //   mkdir(UPLOAD_DIR, 0777, true);
+        // }
+          
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($file_tmp_name, "../".UPLOAD_DIR . $unique_file_name)) {
+            array_push($images, $unique_file_name);
+        } else {
+            echo 'Failed to move uploaded file: ' . $file_name . '<br>';
+        }
+      } else {
+        echo 'Error uploading file: ' . $file_name . '. Error code: ' . $file_error . '<br>';
+      }
+    }
+
+    $values= [
+      "user_id"=>$_POST["post_user_id"],
+      "post_title"=>$_POST["post_title"],
+      "post_description"=>$_POST["post_description"],
+      "post_addresse"=>$_POST["post_addresse"],
+      "post_coordinates"=>$_POST["post_coordinates"],
+      "post_price"=>$_POST["post_price"],
+      "post_images"=>json_encode($images),
+      "post_city_id"=>$_POST["post_city_id"],
+      "post_category_id"=>$_POST["post_category_id"],
+      "post_type"=>$_POST["post_type"],
+    ];
+    Post::create_post($values);
+    $show_alert= true;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +70,7 @@
   <link rel="stylesheet" href="../vendors/css/leaflet.css">
   <link rel="stylesheet" href="../assets/css/dashboard.min.css">
   <link rel="stylesheet" href="../assets/css/dashboard-pages.min.css">
-  <title>3a9arlik | Tableau de bord</title>
+  <title>3a9arlik | <?php echo $page_title?></title>
   <style>
     .form-label{
       font-weight: bold;
@@ -32,15 +81,27 @@
 <body>
   <main>
     <?php include("includes/sidebar.php")?>
-    
     <section class="main">
       <?php include("includes/navbar.php")?>
-
+      
       <section class="container-fluid">
         <div class="mb-4 pt-5 px-4 mt-3 rounded" style="background-color: #ffecd1; border-bottom: solid 5px #dec7a5;">
           <h2 class="poppins">📝 Ajouter un Poste.</h2>
           <p class="text-muted">Creer un nouveau poste.</p>
+          <nav class="p-2 mb-3 rounded " aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
+              <li class="breadcrumb-item"><a href="all-posts.php">Postes</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Ajouter un poste</li>
+            </ol>
+          </nav>
         </div>
+
+        <?php if($show_alert){?>
+          <div class="alert alert-success position-fixed" style="z-index: 50; right: 3rem;">
+            Votre poste a été creer avec succée!
+          </div>
+        <?php }?>
 
 
         <div class="card shadow-sm border-0 p-4">
@@ -51,7 +112,7 @@
             <div class="row">
               <div class="col-9 mx-auto">
                 <form action="" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" name="post_user_id" value="" required>
+                  <input type="hidden" name="post_user_id" value="<?php echo $_SESSION["user_id"]?>" required>
           
                   <label class="form-label" for="post-titre">Titre du post :</label>
                   <input class="form-control mb-3" type="text" id="post-titre" name="post_title" placeholder="Titre d'annonce" required>
@@ -87,13 +148,18 @@
                     <div class="col-6">
                       <label class="form-label" for="post-city">Ville :</label>
                       <select class="form-select" id="post-city" name="post_city_id" required>
+                      <?php foreach(City::$cities as $city){
+                        echo "<option value='{$city['city_id']}'>{$city['city_name']}</option>";
+                      }?>    
                       </select>
                     </div>
                     
                     <div class="col-6">
                       <label class="form-label" for="post-category">Categorie :</label>
                       <select class="form-select" id="post-category" name="post_category_id" required>
-                        
+                      <?php foreach(Category::$categories as $category){
+                        echo "<option value='{$category['category_id']}'>{$category['category_name']}</option>";
+                      }?> 
                       </select>
                     </div>
                   </div>
@@ -176,6 +242,7 @@
       coordInput.value= JSON.stringify([latlng.lat,latlng.lng]);
     }
   </script>
+  <script src="../assets/js/alert.js"></script>
 </body>
 
 </html>
