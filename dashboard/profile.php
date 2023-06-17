@@ -62,13 +62,9 @@
           <div class="d-flex align-items-center border-bottom pb-3">
             <h2 class="me-auto"><i class="fa-solid fa-clipboard-user"></i> Vos donnees.</h2>
             <div>
-              <a class="btn btn-primary" href="change-password.php?user_id=<?php echo $user["user_id"]?>">
+              <a class="btn btn-primary" href="change-password.php">
                 <i class="fa-solid fa-key me-2"></i> 
                 Changer mot de passe
-              </a>
-              <a class="btn btn-secondary" href="update-user.php?user_id=<?php echo $user["user_id"]?>">
-                <i class="fa-solid fa-pen-to-square me-2"></i>
-                Modifier vos donnees
               </a>
             </div>
           </div>
@@ -104,7 +100,7 @@
                 </table>
                 <div class="mt-4">
                   <h4 class="text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i> Zone danger</h4>
-                  <a class="btn btn-danger" href="delete-account?user_id=<?php echo $user["user_id"]?>">
+                  <a class="btn btn-danger" href="delete-profile.php">
                     <i class="fa-solid fa-user-slash me-2"></i> 
                     Suprimer votre compte
                   </a>
