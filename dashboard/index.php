@@ -1,5 +1,8 @@
 <?php 
   require_once('includes/session.php');
+  require_once('core/classes.php');
+
+  UserData::overview($_SESSION["user_logged"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +46,7 @@
               <div class="card-body">
                 <h3 class="poppins">
                   <i class="fa-solid fa-location-dot me-2"></i>
-                  Totale de Locaux
+                  Totale de Postes
                 </h3>
                 <h5 class="display-5 poppins fw-bold ps-2">25</h5>
               </div>

@@ -52,11 +52,13 @@ class User{
 class Post{
   static $result;
 
+  // list of all the post records
   public static function get_all_posts($limiter=null){
     Post::$result= DBhandler::get_result("SELECT post_id, post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name as post_city FROM " 
     . POST_TABLE . " INNER JOIN city on post.post_city_id= city.city_id ORDER BY post_added DESC");
   }
 
+  // create new post
   public static function create_post($values){
     $query= DBhandler::$conn->prepare("INSERT INTO ". POST_TABLE .
     " (`post_user_id`, `post_title`, `post_description`, `post_addresse`, 
@@ -67,6 +69,7 @@ class Post{
     $query->execute($values);
   }
 
+  // post user data
   public static function get_post_user_data($id){
     $query = DBhandler::$conn->prepare("SELECT post.post_user_id, user.user_name, user.user_phone FROM post INNER JOIN user ON user.user_id = post.post_user_id WHERE post_id = :id");
     $query->execute(array("id" => $id));
@@ -75,10 +78,13 @@ class Post{
     return $result;
   }
 
-  public static function get_post($id){
+  // one specific post
+  public static function get_post($id) {
     Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE . " WHERE post_id=$id");
     DBhandler::$conn->query("UPDATE post SET post_views=post_views+1 WHERE post_id=$id");
   }
+
+  // for filtring and search
   public static function filter_posts($city, $category, $type){
     $query= "SELECT post_id, post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name 
       as post_city FROM " . POST_TABLE . " INNER JOIN city on post.post_city_id= city.city_id WHERE post_type='$type'"
