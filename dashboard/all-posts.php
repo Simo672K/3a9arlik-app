@@ -86,7 +86,7 @@
                   </td>
                   <td class="py-3">
                     <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa-solid fa-trash"></i></a>
                   </td>
                 </tr>
                 <?php }?>
@@ -106,6 +106,23 @@
 
       </div>
     </section>
+    <div class="modal fade" id="confirmDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 35rem;">
+        <div class="modal-content">
+          <div class="modal-header py-2 border-0">
+            <h1 class="modal-title fs-3" id="confirmDeleteModal">Suprimer Le poste</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-5">
+            <p class="text-danger text-center"><i class="fa-solid fa-triangle-exclamation me-2"></i> Vous ete sure de suprimer se poste? Si vous confirmer il est imposible de le recuperer!</p>
+          </div>
+          <div class="modal-footer py-2 border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-2"></i>Annuler</button>
+            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Suprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="../vendors/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/js/feather.min.js"></script>
