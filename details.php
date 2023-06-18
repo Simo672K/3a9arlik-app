@@ -20,6 +20,7 @@
     ];
 
     Message::post_message($values);
+    header("location:index.php");
   }
 
 ?>

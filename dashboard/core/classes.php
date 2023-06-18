@@ -7,7 +7,8 @@
     static $result;
     
     public static function get_overview_data($user_id) {
-      UserData::$result= DBhandler::$conn->prepare("SELECT sum(post_views) views, count(post_user_id) nmbr_posts FROM `post` WHERE post_user_id=:user_id GROUP BY post_user_id;");
+      UserData::$result= DBhandler::$conn->prepare("SELECT sum(post_views) views, count(post_user_id) nmbr_posts, count(message_post_id) recived_messages 
+      FROM `post` inner join message on message.message_post_id=post.post_id WHERE post_user_id=:user_id GROUP BY post_user_id;");
       UserData::$result->execute(array("user_id"=>$user_id));
     }
 

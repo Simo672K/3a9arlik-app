@@ -164,6 +164,15 @@ class Message {
     Message::$result->execute($values);
   }
 
+  public static function get_user_messages($user_id) {
+    Message::$result= DBhandler::$conn->prepare(
+      "SELECT * FROM message WHERE message_user_id=:user_id"
+    );
+    Message::$result->execute(array(
+      "user_id"=>$user_id,
+    ));
+  }
+
 }
 
 new DBhandler(DB_NAME, DB_USER, DB_PASSWORD);

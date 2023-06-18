@@ -5,6 +5,7 @@
 
   UserData::get_overview_data($_SESSION["user_id"]);
   $overview_result= UserData::$result->fetch(PDO::FETCH_ASSOC);
+  print_r($overview_result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@
                   <i class="fa-solid fa-location-dot me-2"></i>
                   Totale de Postes
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["nmbr_posts"]?></h5>
+                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["nmbr_posts"] ?$overview_result["nmbr_posts"]:0 ?></h5>
               </div>
             </div>
           </div>
@@ -62,7 +63,7 @@
                   <i class="fa-solid fa-eye me-2"></i>
                   Totale des Vues
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["views"]?></h5>
+                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["views"]?$overview_result["views"]:0?></h5>
               </div>
             </div>
           </div>
@@ -86,7 +87,7 @@
                   <i class="fa-solid fa-inbox me-2"></i>
                   Inbox
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">50</h5>
+                <h5 class="display-5 poppins fw-bold ps-2"><?php echo $overview_result["recived_messages"]?$overview_result["recived_messages"]:0?></h5>
               </div>
             </div>
           </div>
