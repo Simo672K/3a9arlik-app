@@ -85,8 +85,8 @@
                         class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
                   </td>
                   <td class="py-3">
-                    <a href="#" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
-                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="fa-solid fa-trash"></i></a>
+                    <a href="update-post.php?post_id=<?php echo $value["post_id"]?>" class="text-primary"><i class="fa-solid fa-pen-to-square me-2"></i></a>
+                    <a href="#" class="text-danger delete-btn" data-bs-toggle="modal" data-post="<?php echo $value["post_id"]?>" data-bs-target="#confirmDeleteModal"><i class="fa-solid fa-trash"></i></a>
                   </td>
                 </tr>
                 <?php }?>
@@ -118,7 +118,7 @@
           </div>
           <div class="modal-footer py-2 border-0">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-2"></i>Annuler</button>
-            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Suprimer</button>
+            <a type="button" id="delete-confirm" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Suprimer</a>
           </div>
         </div>
       </div>
@@ -128,6 +128,17 @@
   <script src="../vendors/js/feather.min.js"></script>
   <script>
     feather.replace();
+    let deleteConfirm= document.getElementById("delete-confirm");
+
+    window.onload= function() {
+      let deleteBtns= document.querySelectorAll(".delete-btn");
+
+      deleteBtns.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          deleteConfirm.setAttribute("href","delete-post.php?post_id="+btn.getAttribute("data-post"));
+        });
+      })
+    }
   </script>
 </body>
 

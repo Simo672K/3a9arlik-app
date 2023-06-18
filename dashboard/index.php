@@ -40,7 +40,7 @@
             <p class="text-muted">Nous somme heureux de vous avoires ici avec nous, voici un aperçu des activites sur vos postes / annoces</p>
           </div>
   
-          <a class="text-primary text-decoration-none" href="../index.php">Aller au site publique <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          <a class="text-primary text-decoration-none" href="../index.php" target="_blank">Aller au site publique <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <div class="row mb-5">
           <div class="col-3">

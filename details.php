@@ -4,6 +4,7 @@
 
   if(isset($_GET["post_id"])){
     Post::get_post($_GET["post_id"]);
+    Post::update_views($_GET["post_id"]);
     $user_data= Post::get_post_user_data($_GET["post_id"]);
   }else{
     header("Location:posts.php");

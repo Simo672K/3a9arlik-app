@@ -81,6 +81,10 @@ class Post{
   // one specific post
   public static function get_post($id) {
     Post::$result= DBhandler::get_result("SELECT * FROM " . POST_TABLE . " WHERE post_id=$id");
+  }
+
+  // for updating views
+  public static function update_views($id) {
     DBhandler::$conn->query("UPDATE post SET post_views=post_views+1 WHERE post_id=$id");
   }
 
@@ -102,8 +106,17 @@ class Post{
     Post::$result= DBhandler::get_result($query);
   }
 
-  public static function update_post(){}
-  public static function delete_post(){}
+  public static function update_post($values) {
+    $query= "UPDATE post SET post_title=:post_title, 
+      post_description=:post_description, post_addresse=:post_addresse, 
+      post_coordinates=:post_coordinates, post_price=:post_price, post_type=:post_type WHERE 
+      post_id=:post_id";
+    Post::$result= DBhandler::$conn->prepare($query);
+    Post::$result->execute($values);
+  }
+  public static function delete_post($id){
+    Post::$result= DBhandler::get_result("DELETE FROM post WHERE post_id=$id");
+  }
 }
 
 class City{

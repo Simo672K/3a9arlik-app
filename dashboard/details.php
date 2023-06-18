@@ -84,8 +84,8 @@
               <div class="d-flex align-items-start border-bottom">
                 <h2 class="poppins mb-3">Contenue du poste.</h2>
                 <div class="ms-auto d-flex align-items-center">
-                  <a href="#" class="btn btn-info me-2"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
-                  <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Suprimer</a>
+                  <a href="update-post.php?post_id=<?php echo $row["post_id"]?>" class="btn btn-info me-2"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                  <a href="#" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-post="<?php echo $row["post_id"]?>" data-bs-target="#confirmDeleteModal"><i class="fa-solid fa-trash"></i> Suprimer</a>
                 </div>
               </div>
               <div class="card-body">
@@ -176,6 +176,23 @@
       </div>
     </section>
   </main>
+  <div class="modal fade" id="confirmDeleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmDeleteModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 35rem;">
+        <div class="modal-content">
+          <div class="modal-header py-2 border-0">
+            <h1 class="modal-title fs-3" id="confirmDeleteModal">Suprimer Le poste</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-5">
+            <p class="text-danger text-center"><i class="fa-solid fa-triangle-exclamation me-2"></i> Vous ete sure de suprimer se poste? Si vous confirmer il est imposible de le recuperer!</p>
+          </div>
+          <div class="modal-footer py-2 border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-2"></i>Annuler</button>
+            <a href="#" id="delete-confirm" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Suprimer</a>
+          </div>
+        </div>
+      </div>
+    </div>
   <script src="../vendors/js/bootstrap.bundle.min.js"></script>
   <script src="../vendors/js/feather.min.js"></script>
   <script src="../vendors/js/chart.umd.js"></script>
@@ -282,6 +299,19 @@
         prevEl: '.swiper-button-prev',
       },
     });
+  </script>
+  <script>
+    let deleteConfirm= document.getElementById("delete-confirm");
+
+    window.onload= function() {
+      let deleteBtns= document.querySelectorAll(".delete-btn");
+
+      deleteBtns.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          deleteConfirm.setAttribute("href","delete-post.php?post_id="+btn.getAttribute("data-post"));
+        });
+      })
+    }
   </script>
 </body>
 
