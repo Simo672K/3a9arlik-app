@@ -2,8 +2,12 @@
   require_once('includes/session.php');
   require_once('../core/classes.php');
   $page_title= "Postes";
-
-  Post::get_user_posts($_SESSION["user_id"]);
+  $per_page= 10;
+  $page= isset($_GET['page']) ? $_GET['page'] : 1;
+  $page_content= Post::get_paginated_user_posts($_SESSION["user_id"], $page, $per_page);
+  Post::get_user_posts($_SESSION["user_id"], $page, $per_page);
+  $count= Post::$result->rowCount();
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +47,7 @@
         <div class="card shadow-sm border-0 p-4">
           <div class="card-body">
             <div class="border-bottom mb-4">
-              <h4 class="mb-3"><i class="fa-solid fa-list-ul"></i> Tous les postes (<?php echo Post::$result->rowCount() ?>)</h4>
+              <h4 class="mb-3"><i class="fa-solid fa-list-ul"></i> Tous les postes (<?php echo $count ?>)</h4>
             </div>
             <div class="mb-4 mt-4">
               <h5 class="mb-2"><i class="fa-solid fa-search me-1"></i> Rechercher un poste:</h5>
@@ -70,11 +74,11 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach(Post::$result as $key=>$value) {?>
+                <?php foreach($page_content as $key=>$value) {?>
                 <tr>
                   <td class="py-3"><?php echo $value["post_title"]?></td>
                   <td class="py-3"><?php echo $value["post_addresse"]?></td>
-                  <td class="py-3"><?php echo $value["post_price"]?></td>
+                  <td class="py-3"><?php echo $value["post_price"]?> DH</td>
                   <td class="py-3"><?php echo $value["post_views"]?></td>
                   <td class="py-3"><?php echo $value["post_added"]?></td>
                   <td class="py-3"><?php echo $value["post_city"]?></td>
@@ -92,15 +96,29 @@
                 <?php }?>
               </tbody>
             </table>
+            
+            <?php if($count> $per_page){ ?>
             <nav aria-label="...">
               <ul class="pagination pagination-sm">
-                <li class="page-item active" aria-current="page">
+                <!-- <li class="page-item active" aria-current="page">
                   <span class="page-link">1</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </li> -->
+                <?php for($i=1; $i<=ceil($count/$per_page);$i++){ ?>
+                  <?php if($i != $page){?>
+                  <li class="page-item">
+                    <a class="page-link" href="?page=<?php echo $i?>">
+                      <?php echo $i?>
+                    </a>
+                  </li>
+                  <?php }else {?>
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link"><?php echo $i?></span>
+                    </li>
+                  <?php }?>
+                <?php  }?>
               </ul>
             </nav>
+            <?php  }?>
           </div>
         </div>
 

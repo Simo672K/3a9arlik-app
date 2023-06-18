@@ -71,10 +71,10 @@
             <div class="card bg-custom shadow border-0 card-mini">
               <div class="card-body">
                 <h3 class="poppins">
-                  <i class="fa-solid fa-chart-bar me-2"></i>
-                  Votre Rank
+                <i class="fa-solid fa-handshake me-2"></i>
+                  Vos Accord
                 </h3>
-                <h5 class="display-5 poppins fw-bold ps-2">2</h5>
+                <h5 class="display-5 poppins fw-bold ps-2">0</h5>
               </div>
             </div>
           </div>

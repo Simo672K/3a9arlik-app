@@ -53,9 +53,15 @@ class Post{
   static $result;
 
   // list of all the post records
-  public static function get_all_posts($limiter=null){
+  public static function get_all_posts(){
     Post::$result= DBhandler::get_result("SELECT post_id, post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name as post_city FROM " 
     . POST_TABLE . " INNER JOIN city on post.post_city_id= city.city_id ORDER BY post_added DESC");
+  }
+
+  public static function get_all_posts_paginated($page, $per_page){
+    $offset= ($page - 1) * $per_page;
+    return DBhandler::get_result("SELECT post_id, post_title, post_description, post_price, post_views, post_added, post_images, post_type, city_name as post_city FROM " 
+    . POST_TABLE . " INNER JOIN city on post.post_city_id= city.city_id ORDER BY post_added DESC LIMIT $per_page OFFSET $offset");
   }
 
   // create new post
@@ -96,6 +102,12 @@ class Post{
   public static function get_user_posts($user_id) {
     Post::$result= DBhandler::get_result("SELECT post_id, post_title, post_addresse, post_price, post_views, post_added, post_type, city_name as post_city, category_name as post_category  FROM " 
     . POST_TABLE . " INNER JOIN city on post.post_city_id=city.city_id INNER JOIN category on post.post_category_id=category.category_id WHERE post_user_id=$user_id ORDER BY post_added DESC");
+  }
+  
+  public static function get_paginated_user_posts($user_id, $page, $per_page) {
+    $offset= ($page - 1) * $per_page;
+    return DBhandler::get_result("SELECT post_id, post_title, post_addresse, post_price, post_views, post_added, post_type, city_name as post_city, category_name as post_category  FROM " 
+    . POST_TABLE . " INNER JOIN city on post.post_city_id=city.city_id INNER JOIN category on post.post_category_id=category.category_id WHERE post_user_id=$user_id ORDER BY post_added DESC LIMIT $per_page OFFSET $offset");
   }
 
   // for filtring and search
