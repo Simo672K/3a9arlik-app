@@ -10,6 +10,17 @@
     header("Location:posts.php");
   }
   
+  if(isset($_POST["send"])) {
+    $values= [
+      "message_sender_name"=> $_POST["message_sender_name"],
+      "message_sender_email"=> $_POST["message_sender_email"],
+      "message_sender_content"=> $_POST["message_sender_content"],
+      "message_post_id"=> $_GET["post_id"],
+      "message_user_id"=> $user_data["post_user_id"],
+    ];
+
+    Message::post_message($values);
+  }
 
 ?>
 <!DOCTYPE html>
@@ -159,7 +170,7 @@
             <a class="d-block" href="https://wa.me/<?php echo $user_data["user_phone"]?>" target="_blank" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Contacter sur whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
           </li>
           <li class="bg-info contact-item">
-            <a class="d-block" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Envoyer un message directement"><i class="fa-solid fa-message"></i></a>
+            <a class="d-block" href="#" data-bs-toggle="modal" data-bs-target="#messageSendModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Envoyer un message directement"><i class="fa-solid fa-message"></i></a>
           </li>
         </ul>
         <!-- gallery slider -->
@@ -252,6 +263,31 @@
           <p class="text-indent">
             <?php echo $row["post_description"]?>
           </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="messageSendModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="messageSendModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 45rem">
+      <div class="modal-content shadow" style="border-radius: 15px; border: 0;"> 
+        <div class="modal-header border-0 align-items-start shadow-sm">
+          <h3 class="poppins mb-0 fw-bold">Contactez la personne</h3>
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-3 d-flex flex-column h-100">
+          <form action="" method="POST">
+            <label class="form-label" for="name">Nom complet :</label>
+            <input class="form-control mb-3" type="text" id="name" name="message_sender_name" placeholder="Votre nom complet" required>
+
+            <label class="form-label" for="email">Addresse email :</label>
+            <input class="form-control" type="email" name="message_sender_email" id="email" placeholder="Votre addresse email" required>
+
+            <label class="form-label" for="content">Votre message :</label>
+            <textarea class="form-control mb-3" id="content" name="message_sender_content" placeholder="Votre message" rows="7" required></textarea>
+          
+            <button class="btn btn-danger" type="reset" style="padding:0.6rem 3rem !important; border-width: 3px;" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-2"></i>Annuler</button>
+            <button class="btn cta-btn" type="submit" name="send" style="padding:0.6rem 3rem !important;"><i class="fa-solid fa-paper-plane me-2"></i>Envoyer</button>
+          </form>
         </div>
       </div>
     </div>

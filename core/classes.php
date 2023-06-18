@@ -153,6 +153,19 @@ class Category{
   }
 }
 
+class Message {
+  static $result;
+
+  public static function post_message($values) {
+    Message::$result= DBhandler::$conn->prepare(
+      "INSERT INTO message (message_sender_name, message_sender_email, message_sender_content, message_post_id, message_user_id) 
+      VALUES (:message_sender_name, :message_sender_email, :message_sender_content, :message_post_id, :message_user_id)"
+    );
+    Message::$result->execute($values);
+  }
+
+}
+
 new DBhandler(DB_NAME, DB_USER, DB_PASSWORD);
 new City();
 
